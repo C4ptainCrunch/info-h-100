@@ -10,8 +10,8 @@ def verifier(plateau, mot, position, direction):
     
     """
     return (len(mot)+position[direction] <= 15 and
-            joueur.verifier(mot) and
-            dico.verifier(mot) and
+            #joueur.verifier(mot) and
+            #dico.verifier(mot) and
             compatible(plateau, mot, position, direction))
 
 def echantillon(plateau, mot, position, direction):
@@ -42,9 +42,18 @@ def placer(plateau, mot, position, direction):
     """
         place dans le plateau le mot à la position dans la direction
     """
+    if not verifier(plateau, mot, position, direction):
+        return False
     x=position[0]
     y=position[1]
     for i in range(len(mot)):
         plateau[x][y]=mot[i]
         x+=direction
         y+=abs(direction-1)
+    return True
+
+def init():
+    plateau = []
+    for i in range(0,15):
+        plateau.append(range(0,15))
+    return plateau

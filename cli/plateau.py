@@ -5,6 +5,6 @@ def afficher(plateau):
     
     for x in plateau:
         for case in x:
-            print case+' '
+            print case+'  '
         print '\n'
         
