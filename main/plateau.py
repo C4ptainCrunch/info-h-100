@@ -1,21 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-def plateau():
-    plateau=[]
-    ligne=range(0,15)
-    for i in range(0,15):
-        plateau.append(ligne)
-    return plateau
-
-plateau=plateau()
-
 def verifier(plateau, mot, position, direction):
     """
         plateau : liste de liste
         mot : string
         position : tuple (x,y)
-        direction : 0=x, 1=y
+        direction : 0=horizontal, 1=vertical
     
     """
     return (len(mot)+position[direction] <= 15 and
@@ -46,3 +37,14 @@ def compatible(plateau, mot, position, direction):
             return False
         j+=1
     return True
+
+def placer(plateau, mot, position, direction):
+    """
+        place dans le plateau le mot à la position dans la direction
+    """
+    x=position[0]
+    y=position[1]
+    for i in range(len(mot)):
+        plateau[x][y]=mot[i]
+        x+=direction
+        y+=abs(direction-1)
