@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+import dico
 
 def verifier(plateau, mot, position, direction):
     """
