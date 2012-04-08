@@ -16,6 +16,24 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
             dico.verifier(mot, dictionnaire) and
             compatible(plateau, mot, position, direction))
 
+def motsCollateraux(plateau, mot, position, direction, dictionnaire):
+    """
+        retourne les mots engendrés par le mot placé
+    """
+    mots=[]
+    pos=[]
+    pos.extend(position)
+    for lettre in mot:
+        mots.append(motEngendre(plateau, lettre, pos, direction))
+        pos[0]+=direction
+        pos[1]+=abs(direction-1)
+    return mots
+
+def motEngendre(plateau, position, direction):
+    """
+        pour une position donnée, donne le mot engendré par la pose de la lettre
+    """
+
 def echantillon(plateau, mot, position, direction):
     """
         retourne le "mot" qui est en lieu et place de ce que le user veut placer
@@ -52,7 +70,14 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet):
         plateau[x][y]=mot[i]
         x+=direction
         y+=abs(direction-1)
-    return True
+    return points(mot, position, direction)
+
+"""def points(lettres, mot, position, direction):
+    points=0
+    if len(mot)==7:
+        points+=50
+    for lettre in mot:"""
+        
 
 def init():
     """

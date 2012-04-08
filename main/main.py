@@ -24,13 +24,6 @@ def chargerLettres(chemin):
         liste.append(array)
     return liste
 
-def creerSac(lettres):
-    lettres = list(lettres)
-    for piece in lettres:
-        del piece[2]
-        pass
-    return lettres
-
 ###################################
 ### initialisation des variables###
 ###################################
@@ -44,7 +37,5 @@ Sac=sac.init(lettres)
 #####
 
 joueur1=joueur.init(Sac)
-print joueur1["chevalet"]
-mot=raw_input("mot ?")
-print len(mot)
-print joueur.verifierChevalet(joueur1["chevalet"], mot)
+plateau.placer(Plateau, "BONJOUR", (5,5), 0, Dico, joueur1["chevalet"])
+print plateau.motEngendre(Plateau, (4,6), 0)
