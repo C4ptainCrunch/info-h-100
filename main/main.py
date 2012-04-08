@@ -25,10 +25,6 @@ def creerSac(lettres):
         pass
     return lettres
 
-#plat=plateau.init()
-#print plateau.placer(plat, "mdfsfsfqsdddddot", (0,0), 1)
-#afficher(plat)
-
 dictionnaire=chargerDico("../assets/french.dic")
 plat=plateau.init()
 print plateau.placer(plat, "JOUER", (0,0), 0, dictionnaire)

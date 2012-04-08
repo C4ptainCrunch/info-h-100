@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import dico
+import joueur
 
 def verifier(plateau, mot, position, direction, dictionnaire):
     """
@@ -54,6 +55,9 @@ def placer(plateau, mot, position, direction, dictionnaire):
     return True
 
 def init():
+    """
+        Initialise le plateau avec uniquement des None
+    """
     plateau = []
     for i in range(0,15):
         ligne=[]
