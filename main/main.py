@@ -3,6 +3,7 @@
 
 import plateau
 import sac
+import joueur
 
 def chargerDico(chemin):
     fichier = open(chemin)
@@ -12,6 +13,9 @@ def chargerDico(chemin):
     return tuple(liste)
 
 def chargerLettres(chemin):
+    """
+        retourne la liste des lettres, le nombre qu'il y en a et la valeur en points
+    """
     fichier = open(chemin)
     liste = []
     for ligne in fichier:
@@ -39,5 +43,6 @@ Sac=sac.init(lettres)
 #####
 
 print Sac
-print sac.piocher(Sac)
+joueur1=joueur.init(Sac)
+print joueur1["chevalet"]
 print Sac
