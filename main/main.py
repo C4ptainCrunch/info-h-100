@@ -38,6 +38,6 @@ Sac=sac.init(lettres)
 
 #####
 
-plateau.placer(Plateau, "BONJOUR", (0,0), 0, Dico)
-print Plateau
+print Sac
+print sac.piocher(Sac)
 print Sac
