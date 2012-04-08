@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import plateau
+import sac
 
 def chargerDico(chemin):
     fichier = open(chemin)
@@ -25,7 +27,17 @@ def creerSac(lettres):
         pass
     return lettres
 
-dictionnaire=chargerDico("../assets/french.dic")
-plat=plateau.init()
-print plateau.placer(plat, "JOUER", (0,0), 0, dictionnaire)
-print plat
+###################################
+### initialisation des variables###
+###################################
+
+Dico=chargerDico("../assets/french.dic")
+Plateau=plateau.init()
+lettres=chargerLettres("../assets/french.let")
+Sac=sac.init(lettres)
+
+#####
+
+plateau.placer(Plateau, "BONJOUR", (0,0), 0, Dico)
+print Plateau
+print Sac
