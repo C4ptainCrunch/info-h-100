@@ -3,7 +3,7 @@
 import dico
 import joueur
 
-def verifier(plateau, mot, position, direction, dictionnaire):
+def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
     """
         plateau : liste de liste
         mot : string
@@ -12,7 +12,7 @@ def verifier(plateau, mot, position, direction, dictionnaire):
     
     """
     return (len(mot)+position[direction] <= 15 and
-            #joueur.verifier(mot) and
+            joueur.verifierChevalet(chevalet, mot) and
             dico.verifier(mot, dictionnaire) and
             compatible(plateau, mot, position, direction))
 
@@ -40,11 +40,11 @@ def compatible(plateau, mot, position, direction):
         j+=1
     return True
 
-def placer(plateau, mot, position, direction, dictionnaire):
+def placer(plateau, mot, position, direction, dictionnaire, chevalet):
     """
         place dans le plateau le mot à la position dans la direction
     """
-    if not verifier(plateau, mot, position, direction, dictionnaire):
+    if not verifier(plateau, mot, position, direction, dictionnaire, chevalet):
         return False
     x=position[0]
     y=position[1]

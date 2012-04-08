@@ -40,9 +40,11 @@ Plateau=plateau.init()
 lettres=chargerLettres("../assets/french.let")
 Sac=sac.init(lettres)
 
+
 #####
 
-print Sac
 joueur1=joueur.init(Sac)
 print joueur1["chevalet"]
-print Sac
+mot=raw_input("mot ?")
+print len(mot)
+print joueur.verifierChevalet(joueur1["chevalet"], mot)
