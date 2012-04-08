@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import dico
 
-def verifier(plateau, mot, position, direction):
+def verifier(plateau, mot, position, direction, dictionnaire):
     """
         plateau : liste de liste
         mot : string
@@ -12,7 +12,7 @@ def verifier(plateau, mot, position, direction):
     """
     return (len(mot)+position[direction] <= 15 and
             #joueur.verifier(mot) and
-            #dico.verifier(mot) and
+            dico.verifier(mot, dictionnaire) and
             compatible(plateau, mot, position, direction))
 
 def echantillon(plateau, mot, position, direction):
@@ -39,11 +39,11 @@ def compatible(plateau, mot, position, direction):
         j+=1
     return True
 
-def placer(plateau, mot, position, direction):
+def placer(plateau, mot, position, direction, dictionnaire):
     """
         place dans le plateau le mot à la position dans la direction
     """
-    if not verifier(plateau, mot, position, direction):
+    if not verifier(plateau, mot, position, direction, dictionnaire):
         return False
     x=position[0]
     y=position[1]
@@ -56,5 +56,8 @@ def placer(plateau, mot, position, direction):
 def init():
     plateau = []
     for i in range(0,15):
-        plateau.append(range(0,15))
+        ligne=[]
+        for j in range(0,15):
+            ligne.append(None)
+        plateau.append(ligne)
     return plateau

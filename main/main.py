@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import plateau
+
 def chargerDico(chemin):
     fichier = open(chemin)
     liste = []
@@ -27,3 +28,8 @@ def creerSac(lettres):
 #plat=plateau.init()
 #print plateau.placer(plat, "mdfsfsfqsdddddot", (0,0), 1)
 #afficher(plat)
+
+dictionnaire=chargerDico("../assets/french.dic")
+plat=plateau.init()
+print plateau.placer(plat, "JOUER", (0,0), 0, dictionnaire)
+print plat
