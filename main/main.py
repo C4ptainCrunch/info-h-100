@@ -8,4 +8,18 @@ def chargerDico(chemin):
         liste.append(mot.rstrip())
     return tuple(liste)
 
-print chargerDico('assets/french.dic')
+def chargerLettres(chemin):
+    fichier = open(chemin)
+    liste = []
+    for ligne in fichier:
+        array = ligne.split(' ')
+        array[-1] = array[-1].rstrip()
+        liste.append(array)
+    return liste
+
+def creerSac(lettres):
+    lettres = list(lettres)
+    for piece in lettres:
+        del piece[2]
+        pass
+    return lettres
