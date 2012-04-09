@@ -34,9 +34,9 @@ def chargerValeurs(lettres):
         valeurs[i[0]]=i[2]
     return valeurs
 
-###################################
-### initialisation des variables###
-###################################
+####################################
+### initialisation des variables ###
+####################################
 
 Dico=chargerDico("../assets/french.dic")
 Plateau=plateau.init()
@@ -44,14 +44,19 @@ lettres=chargerLettres("../assets/french.let")
 valeurs=chargerValeurs(lettres)
 Sac=sac.init(lettres)
 
-#####
+####################################
+######## Déroulement du jeu ########
+####################################
 
 joueur1=joueur.init(Sac)
-cliPlateau.afficher(Plateau)
-print joueur1["chevalet"]
-mot=raw_input("mot ? ")
-pos1=int(raw_input("ligne ? "))
-pos2=int(raw_input("colonne ? "))
-dir=int(raw_input("direction ? "))
-print plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueur1["chevalet"], valeurs)
-cliPlateau.afficher(Plateau)
+while 1!=2:
+    cliPlateau.afficher(Plateau)
+    print joueur1["chevalet"]
+    mot=raw_input("mot ? ")
+    pos1=int(raw_input("ligne ? "))
+    pos2=int(raw_input("colonne ? "))
+    dir=int(raw_input("direction ? "))
+    points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueur1["chevalet"], valeurs)
+    joueur.ajouterPoints(points, joueur1)
+    joueur.remplirChevalet(joueur1["chevalet"], Sac)
+    print joueur1["points"]
