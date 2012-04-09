@@ -24,7 +24,7 @@ def motsCollateraux(plateau, mot, position, direction, dictionnaire):
     pos=[]
     pos.extend(position)
     for lettre in mot:
-        mots.append(motEngendre(plateau, lettre, pos, direction))
+        mots.append(motEngendre(ARG))
         pos[0]+=direction
         pos[1]+=abs(direction-1)
     return mots
@@ -33,6 +33,8 @@ def motEngendre(plateau, position, direction):
     """
         pour une position donnée, donne le mot engendré par la pose de la lettre
     """
+    pass
+    
 
 def echantillon(plateau, mot, position, direction):
     """
@@ -58,9 +60,10 @@ def compatible(plateau, mot, position, direction):
         j+=1
     return True
 
-def placer(plateau, mot, position, direction, dictionnaire, chevalet):
+def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     """
         place dans le plateau le mot à la position dans la direction
+        retourne le nombre de points ou false si on peut pas placer
     """
     if not verifier(plateau, mot, position, direction, dictionnaire, chevalet):
         return False
@@ -70,13 +73,18 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet):
         plateau[x][y]=mot[i]
         x+=direction
         y+=abs(direction-1)
-    return points(mot, position, direction)
+    return points(valeurs, mot, position, direction)
 
-"""def points(lettres, mot, position, direction):
+def points(valeurs, mot, position, direction):
+    """
+        retourne le nombre de points fait par le mot
+    """
     points=0
     if len(mot)==7:
         points+=50
-    for lettre in mot:"""
+    for lettre in mot:
+        points+=int(valeurs[lettre])
+    return points
         
 
 def init():

@@ -4,6 +4,7 @@
 import plateau
 import sac
 import joueur
+import cliPlateau
 
 def chargerDico(chemin):
     fichier = open(chemin)
@@ -24,6 +25,15 @@ def chargerLettres(chemin):
         liste.append(array)
     return liste
 
+def chargerValeurs(lettres):
+    """
+        retourne un dictionnaire avec comme clé la lettre et comme valeur le nombre de points que vaut la lettre
+    """
+    valeurs={}
+    for i in lettres:
+        valeurs[i[0]]=i[2]
+    return valeurs
+
 ###################################
 ### initialisation des variables###
 ###################################
@@ -31,11 +41,17 @@ def chargerLettres(chemin):
 Dico=chargerDico("../assets/french.dic")
 Plateau=plateau.init()
 lettres=chargerLettres("../assets/french.let")
+valeurs=chargerValeurs(lettres)
 Sac=sac.init(lettres)
-
 
 #####
 
 joueur1=joueur.init(Sac)
-plateau.placer(Plateau, "BONJOUR", (5,5), 0, Dico, joueur1["chevalet"])
-print plateau.motEngendre(Plateau, (4,6), 0)
+cliPlateau.afficher(Plateau)
+print joueur1["chevalet"]
+mot=raw_input("mot ? ")
+pos1=int(raw_input("ligne ? "))
+pos2=int(raw_input("colonne ? "))
+dir=int(raw_input("direction ? "))
+print plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueur1["chevalet"], valeurs)
+cliPlateau.afficher(Plateau)
