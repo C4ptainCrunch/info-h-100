@@ -47,6 +47,7 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresSup) and
             dico.verifier(mot, dictionnaire) and
+            estColle(plateau, mot, position, direction) and
             lettresSup!=False):
         return lettresSup
     return False
@@ -64,6 +65,7 @@ def compatible(plateau, mot, position, direction):
         if not i==None:
             lettresSup.append(str(i))
         j+=1
+    print lettresSup
     return lettresSup
 
 def points(valeurs, mot, position, direction):
@@ -95,7 +97,26 @@ def motEngendre(plateau, position, direction):
         pour une position donnée, donne le mot engendré par la pose de la lettre
     """
     pass
-    
+
+def estColle(plateau, mot, position, direction):
+    """
+        Retourne true si le mot a bien un point de contact avec les lettres en place, ou si c'est le premier tour (position = [7,7])
+        Retourne False sinon
+    """
+    x=position[0]
+    y=position[1]
+    for lettre in mot:
+        if (plateau[x][y] or
+            plateau[x+1][y]!=None or
+            plateau[x-1][y]!=None or
+            plateau[x][y+1]!=None or
+            plateau[x][y-1]!=None or
+            (position[0]==7 and position[1]==7)):
+            return True
+        x+=direction
+        y+=abs(direction-1)
+    return False
+
 def echantillon(plateau, mot, position, direction):
     """
         retourne le "mot" qui est en lieu et place de ce que le user veut placer

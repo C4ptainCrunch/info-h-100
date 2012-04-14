@@ -6,6 +6,17 @@ import sac
 import joueur
 import cliPlateau
 
+#########################################
+### Fonction d'interface => FICHIER ! ###
+#########################################
+
+def demandeUtilisateur(phrase):
+    retour=raw_input(phrase)
+    if retour==42:
+        quit()
+    return retour
+
+####################################
 
 def chargerDico(chemin):
     fichier = open(chemin)
@@ -54,16 +65,26 @@ nbreJoueurs=raw_input("Nombre Joueurs ? ")
 for i in range(int(nbreJoueurs)):
     joueurs.append(joueur.init(Sac))
 
-while 1!=2:
-    for i in range(int(nbreJoueurs)):
+while 1!=2: #Boucle pour chaque tour
+    print "NOUVEAU TOUR"
+    for i in range(int(nbreJoueurs)): #boucle pour chaque joueur
         cliPlateau.afficher(Plateau)
         print "JOUEUR "+str(i+1)
         print joueurs[i][0]
-        mot=raw_input("mot ? ")
-        pos1=int(raw_input("ligne ? "))
-        pos2=int(raw_input("colonne ? "))
-        dir=int(raw_input("direction ? "))
-        points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
-        joueur.ajouterPoints(points, joueurs[i])
-        joueur.remplirChevalet(joueurs[i][0], Sac)
-        print joueurs[i][0]
+        points=0
+        fini=False
+        while points==0 and fini==False:
+            mot=demandeUtilisateur("mot ? ")
+            pos1=int(demandeUtilisateur("ligne ? "))
+            pos2=int(demandeUtilisateur("colonne ? "))
+            dir=int(demandeUtilisateur("direction ? "))
+            points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
+            if not points==0:
+                joueur.ajouterPoints(points, joueurs[i])
+                joueur.remplirChevalet(joueurs[i][0], Sac)
+            elif mot=="0":
+                print "Vous passez votre tour"
+                fini=True
+            else:
+                print "Vous vous êtes trompés."
+        print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
