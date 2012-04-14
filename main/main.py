@@ -44,20 +44,26 @@ Plateau=plateau.init()
 lettres=chargerLettres("../assets/french.let")
 valeurs=chargerValeurs(lettres)
 Sac=sac.init(lettres)
+joueurs=[]
 
 ####################################
 ######## Déroulement du jeu ########
 ####################################
 
-joueur1=joueur.init(Sac)
+nbreJoueurs=raw_input("Nombre Joueurs ? ")
+for i in range(int(nbreJoueurs)):
+    joueurs.append(joueur.init(Sac))
+
 while 1!=2:
-    cliPlateau.afficher(Plateau)
-    print joueur1["chevalet"]
-    mot=raw_input("mot ? ")
-    pos1=int(raw_input("ligne ? "))
-    pos2=int(raw_input("colonne ? "))
-    dir=int(raw_input("direction ? "))
-    points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueur1["chevalet"], valeurs)
-    joueur.ajouterPoints(points, joueur1)
-    joueur.remplirChevalet(joueur1["chevalet"], Sac)
-    print joueur1["points"]
+    for i in range(int(nbreJoueurs)):
+        cliPlateau.afficher(Plateau)
+        print "JOUEUR "+str(i+1)
+        print joueurs[i][0]
+        mot=raw_input("mot ? ")
+        pos1=int(raw_input("ligne ? "))
+        pos2=int(raw_input("colonne ? "))
+        dir=int(raw_input("direction ? "))
+        points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
+        joueur.ajouterPoints(points, joueurs[i])
+        joueur.remplirChevalet(joueurs[i][0], Sac)
+        print joueurs[i][0]

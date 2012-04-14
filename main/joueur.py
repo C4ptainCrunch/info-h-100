@@ -5,11 +5,11 @@ import sac
 
 def init(Sac):
     """
-        initialise un joueur (chevalet, points)
+        initialise un joueur [chevalet, points] sous forme de liste
     """
-    joueur={}
-    joueur["chevalet"]=creerChevalet(Sac)
-    joueur["points"]=0
+    joueur=[]
+    joueur.append(creerChevalet(Sac))
+    joueur.append(0)
     return joueur
 
 def creerChevalet(Sac):
@@ -19,7 +19,7 @@ def creerChevalet(Sac):
     return chevalet
 
 def ajouterPoints(n, joueur):
-    joueur["points"]+=n
+    joueur[1]+=n
 
 def remplirChevalet(chevalet, Sac):
     """

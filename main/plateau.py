@@ -71,9 +71,9 @@ def points(valeurs, mot, position, direction):
         retourne le nombre de points fait par le mot
     """
     points=0
-    if len(mot)==7:
+    if len(mot)==7: #Scrabble
         points+=50
-    for lettre in mot:
+    for lettre in mot: #Points des lettres
         points+=int(valeurs[lettre])
     return points
 
