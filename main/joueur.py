@@ -28,19 +28,23 @@ def remplirChevalet(chevalet, Sac):
     for i in range(len(chevalet), 7):
         chevalet.append(sac.piocher(Sac))
 
-def retirerChevalet(chevalet, mot):
+def retirerChevalet(chevalet, mot, lettresSup):
     """
-       Retire le mot du chevalet (attention, d'abord vérifier que mot dans chevalet) 
+       Retire le mot du chevalet (attention, d'abord vérifier que mot dans chevalet) sans retirer les lettres (lettresSup) qui sont déjà sur le plateau
     """
+    temp=lettresSup+chevalet # Magouille par rapport à l'attribution des variables... Seul moyen de "extend" par l'avant de la liste
     for lettre in mot:
-        chevalet.remove(lettre)
+        temp.remove(lettre)
+    del(chevalet[:])
+    chevalet.extend(temp)
 
-def verifierChevalet(chevalet, mot):
+def verifierChevalet(chevalet, mot, lettresSup):
     """
-        vérifie que le mot est bien dans le chevalet
+        vérifie que le mot est bien dans le chevalet (en comptant les lettres déjà sur le plateau)
     """
-    test=[]
-    test.extend(chevalet)
+    test=[] # Si lettresSup=False, on veut retourner False et donc rentrer dans la condition de la liste vide (dans la condition ci dessous)
+    if not lettresSup==False:
+        test+=lettresSup+chevalet
     for lettre in mot:
         if not test.count(lettre)==0:
             test.remove(lettre)

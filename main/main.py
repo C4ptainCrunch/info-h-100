@@ -4,6 +4,7 @@
 import plateau
 import sac
 import joueur
+import cliPlateau
 
 
 def chargerDico(chemin):
@@ -50,7 +51,7 @@ Sac=sac.init(lettres)
 
 joueur1=joueur.init(Sac)
 while 1!=2:
-    cliPlateauafficher(Plateau)
+    cliPlateau.afficher(Plateau)
     print joueur1["chevalet"]
     mot=raw_input("mot ? ")
     pos1=int(raw_input("ligne ? "))

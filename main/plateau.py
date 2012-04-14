@@ -9,12 +9,17 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
         mot : string
         position : tuple (x,y)
         direction : 0=horizontal, 1=vertical
+        
+        Retourne False si on peut pas placer le mot, et les lettres déjà sur la plteau à la place du mot si on peut le placer
     
     """
-    return (len(mot)+position[direction] <= 15 and
-            joueur.verifierChevalet(chevalet, mot) and
+    lettresSup=compatible(plateau, mot, position, direction)
+    if (len(mot)+position[direction] <= 15 and
+            joueur.verifierChevalet(chevalet, mot, lettresSup) and
             dico.verifier(mot, dictionnaire) and
-            compatible(plateau, mot, position, direction))
+            lettresSup!=False):
+        return lettresSup
+    return False
 
 def motsCollateraux(plateau, mot, position, direction, dictionnaire):
     """
@@ -52,13 +57,17 @@ def echantillon(plateau, mot, position, direction):
 def compatible(plateau, mot, position, direction):
     """
         vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
+        Retourne les lettres qui sont déjà sur la plateau et qu'on veut utiliser dans le mot
     """
+    lettresSup=[]
     j=0
     for i in echantillon(plateau, mot, position, direction):
         if not (i==None or str(i)==mot[j]):
             return False
+        if not i==None:
+            lettresSup.append(str(i))
         j+=1
-    return True
+    return lettresSup
 
 def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     """
@@ -66,7 +75,8 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         retourne le nombre de points ou false si on peut pas placer
         retire du chevalet les lettres placées
     """
-    if not verifier(plateau, mot, position, direction, dictionnaire, chevalet):
+    lettresSup=verifier(plateau, mot, position, direction, dictionnaire, chevalet)
+    if lettresSup==False:
         return False
     x=position[0]
     y=position[1]
@@ -74,7 +84,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         plateau[x][y]=mot[i]
         x+=direction
         y+=abs(direction-1)
-    joueur.retirerChevalet(chevalet, mot) #on enlève du chevalet les lettres placées
+    joueur.retirerChevalet(chevalet, mot, lettresSup) #on enlève du chevalet les lettres placées
     return points(valeurs, mot, position, direction)
 
 def points(valeurs, mot, position, direction):
