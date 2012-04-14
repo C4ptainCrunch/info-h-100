@@ -3,6 +3,36 @@
 import dico
 import joueur
 
+def init():
+    """
+        Initialise le plateau avec uniquement des None
+    """
+    plateau = []
+    for i in range(0,15):
+        ligne=[]
+        for j in range(0,15):
+            ligne.append(None)
+        plateau.append(ligne)
+    return plateau
+
+def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
+    """
+        place dans le plateau le mot à la position dans la direction
+        retourne le nombre de points ou false si on peut pas placer
+        retire du chevalet les lettres placées
+    """
+    lettresSup=verifier(plateau, mot, position, direction, dictionnaire, chevalet)
+    if lettresSup==False:
+        return False
+    x=position[0]
+    y=position[1]
+    for i in range(len(mot)):
+        plateau[x][y]=mot[i]
+        x+=direction
+        y+=abs(direction-1)
+    joueur.retirerChevalet(chevalet, mot, lettresSup) #on enlève du chevalet les lettres placées
+    return points(valeurs, mot, position, direction)
+
 def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
     """
         plateau : liste de liste
@@ -20,6 +50,32 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
             lettresSup!=False):
         return lettresSup
     return False
+
+def compatible(plateau, mot, position, direction):
+    """
+        vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
+        Retourne les lettres qui sont déjà sur la plateau et qu'on veut utiliser dans le mot
+    """
+    lettresSup=[]
+    j=0
+    for i in echantillon(plateau, mot, position, direction):
+        if not (i==None or str(i)==mot[j]):
+            return False
+        if not i==None:
+            lettresSup.append(str(i))
+        j+=1
+    return lettresSup
+
+def points(valeurs, mot, position, direction):
+    """
+        retourne le nombre de points fait par le mot
+    """
+    points=0
+    if len(mot)==7:
+        points+=50
+    for lettre in mot:
+        points+=int(valeurs[lettre])
+    return points
 
 def motsCollateraux(plateau, mot, position, direction, dictionnaire):
     """
@@ -40,7 +96,6 @@ def motEngendre(plateau, position, direction):
     """
     pass
     
-
 def echantillon(plateau, mot, position, direction):
     """
         retourne le "mot" qui est en lieu et place de ce que le user veut placer
@@ -53,60 +108,3 @@ def echantillon(plateau, mot, position, direction):
         x+=direction
         y+=abs(direction-1)
     return echantillon
-
-def compatible(plateau, mot, position, direction):
-    """
-        vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
-        Retourne les lettres qui sont déjà sur la plateau et qu'on veut utiliser dans le mot
-    """
-    lettresSup=[]
-    j=0
-    for i in echantillon(plateau, mot, position, direction):
-        if not (i==None or str(i)==mot[j]):
-            return False
-        if not i==None:
-            lettresSup.append(str(i))
-        j+=1
-    return lettresSup
-
-def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
-    """
-        place dans le plateau le mot à la position dans la direction
-        retourne le nombre de points ou false si on peut pas placer
-        retire du chevalet les lettres placées
-    """
-    lettresSup=verifier(plateau, mot, position, direction, dictionnaire, chevalet)
-    if lettresSup==False:
-        return False
-    x=position[0]
-    y=position[1]
-    for i in range(len(mot)):
-        plateau[x][y]=mot[i]
-        x+=direction
-        y+=abs(direction-1)
-    joueur.retirerChevalet(chevalet, mot, lettresSup) #on enlève du chevalet les lettres placées
-    return points(valeurs, mot, position, direction)
-
-def points(valeurs, mot, position, direction):
-    """
-        retourne le nombre de points fait par le mot
-    """
-    points=0
-    if len(mot)==7:
-        points+=50
-    for lettre in mot:
-        points+=int(valeurs[lettre])
-    return points
-        
-
-def init():
-    """
-        Initialise le plateau avec uniquement des None
-    """
-    plateau = []
-    for i in range(0,15):
-        ligne=[]
-        for j in range(0,15):
-            ligne.append(None)
-        plateau.append(ligne)
-    return plateau
