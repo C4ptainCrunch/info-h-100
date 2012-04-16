@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def cliPlateauafficher(plateau):
+def plateauafficher(plateau):
     espace = '\t'
     print espace,
     for y in range(0,15):

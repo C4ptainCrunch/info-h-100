@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import plateau
-import sac
-import joueur
-import cliPlateau
+
 
 #########################################
 ### Fonction d'interface => FICHIER ! ###
