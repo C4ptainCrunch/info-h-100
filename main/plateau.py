@@ -87,7 +87,7 @@ def motsCollateraux(plateau, mot, position, direction, dictionnaire):
     pos=[]
     pos.extend(position)
     for lettre in mot:
-        mots.append(motEngendre(ARG))
+        mots.append(motEngendre(plateau, lettre, position, direction))
         pos[0]+=direction
         pos[1]+=abs(direction-1)
     return mots

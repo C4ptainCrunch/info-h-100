@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def plateauafficher(plateau):
+def afficher(plateau):
     espace = '\t'
     print espace,
     for y in range(0,15):
@@ -10,7 +10,7 @@ def plateauafficher(plateau):
     i = 0
     for x in plateau:
         print str(i)+espace,
-        i += i
+        i += 1
         for case in x:
             if case == None:
                 print '+'+espace,

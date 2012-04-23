@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import main
+import cli
+
+
 if __name__ == "__main__":
-    import main.plateau
-    import main.sac
-    import main.joueur
-    import cli.plateau
+    main.main()
