@@ -11,7 +11,7 @@ def init():
     for i in range(0,15):
         ligne=[]
         for j in range(0,15):
-            ligne.append(None)
+            ligne.append((1,1))
         plateau.append(ligne)
     return plateau
 
@@ -21,7 +21,8 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         retourne le nombre de points ou false si on peut pas placer
         retire du chevalet les lettres placées
     """
-    lettresSup=verifier(plateau, mot, position, direction, dictionnaire, chevalet)
+    motsCollateraux = findMotsCollateraux(plateau, mot, position, direction)
+    lettresSup=verifier(plateau, mot, position, direction, dictionnaire, chevalet,motsCollateraux)
     if lettresSup==False:
         return False
     x=position[0]
@@ -33,7 +34,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     joueur.retirerChevalet(chevalet, mot, lettresSup) #on enlève du chevalet les lettres placées
     return points(valeurs, mot, position, direction)
 
-def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
+def verifier(plateau, mot, position, direction, dictionnaire, chevalet,motsCollateraux):
     """
         plateau : liste de liste
         mot : string
@@ -44,12 +45,16 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet):
     
     """
     lettresSup=compatible(plateau, mot, position, direction)
+#    for motCollateral in motsCollateraux:
+#        if not dico.verifier(motCollateral, dictionnaire):
+#            return False
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresSup) and
             dico.verifier(mot, dictionnaire) and
             estColle(plateau, mot, position, direction) and
             lettresSup!=False):
-        return lettresSup
+        print 'cond pourrie'
+        return lettresSup    
     return False
 
 def compatible(plateau, mot, position, direction):
@@ -79,24 +84,44 @@ def points(valeurs, mot, position, direction):
         points+=int(valeurs[lettre])
     return points
 
-def motsCollateraux(plateau, mot, position, direction, dictionnaire):
+def findMotsCollateraux(plateau, mot, position, direction):
     """
         retourne les mots engendrés par le mot placé
     """
     mots=[]
-    pos=[]
-    pos.extend(position)
+    x=position[0]
+    y=position[1]
     for lettre in mot:
-        mots.append(motEngendre(plateau, lettre, position, direction))
-        pos[0]+=direction
-        pos[1]+=abs(direction-1)
+        engendre=motEngendre(plateau, lettre, position, direction)
+        if len(engendre)>2:
+            mots.append(engendre)
+        x+=direction
+        y+=abs(direction-1)
     return mots
 
-def motEngendre(plateau, position, direction):
+def motEngendre(plateau, lettre, position, direction):
     """
         pour une position donnée, donne le mot engendré par la pose de la lettre
     """
-    pass
+    x=position[0]
+    y=position[1]
+    lettreActuelle = lettre
+    while type(lettreActuelle) != type((None,)):
+        x-=abs(direction-1)
+        y-=direction
+        lettreActuelle = plateau[x][y]
+    x+=abs(direction-1)
+    y+=direction
+    lettreActuelle = plateau[x][y]
+    motEngendre = ''
+    while type(lettreActuelle) != type((None,)):
+        motEngendre += lettreActuelle
+        x+=abs(direction-1)
+        y+=direction
+        lettreActuelle = plateau[x][y]
+    return motEngendre
+        
+    
 
 def estColle(plateau, mot, position, direction):
     """

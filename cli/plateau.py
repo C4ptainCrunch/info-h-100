@@ -12,7 +12,7 @@ def afficher(plateau):
         print str(i)+espace,
         i += 1
         for case in x:
-            if case == None:
+            if type(case) == type((None,)):
                 print '+'+espace,
             else:
                 print str(case)+espace,
