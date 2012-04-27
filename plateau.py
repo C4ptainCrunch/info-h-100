@@ -4,12 +4,12 @@ import dico
 import joueur
 
 def init(multiplicateurs):
-"""
-Initialise le plateau avec uniquement des (1,1)
-Chaque case représentée par (a,b)
-Ou a est le multiplicateur du mot et b le multiplicateur de la lettre
-Dans "multiplicateurs", les deux premières données sont les coordonnées.
-"""
+    """
+    Initialise le plateau avec uniquement des (1,1)
+    Chaque case représentée par (a,b)
+    Ou a est le multiplicateur du mot et b le multiplicateur de la lettre
+    Dans "multiplicateurs", les deux premières données sont les coordonnées.
+    """
     plateau = []
     for i in range(0,15):
         ligne=[]
@@ -21,11 +21,11 @@ Dans "multiplicateurs", les deux premières données sont les coordonnées.
     return plateau
 
 def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
-"""
-place dans le plateau le mot à la position dans la direction
-retourne le nombre de points ou false si on peut pas placer
-retire du chevalet les lettres placées
-"""
+    """
+    place dans le plateau le mot à la position dans la direction
+    retourne le nombre de points ou false si on peut pas placer
+    retire du chevalet les lettres placées
+    """
     motsCollateraux = findMotsCollateraux(plateau, mot, position, direction)
     lettresSup=verifier(plateau, mot, position,
                         direction, dictionnaire, chevalet,motsCollateraux)
@@ -42,34 +42,34 @@ retire du chevalet les lettres placées
 
 def verifier(plateau, mot, position, direction,
              dictionnaire, chevalet,motsCollateraux):
-"""
-plateau : liste de liste
-mot : string
-position : tuple (x,y)
-direction : 0=horizontal, 1=vertical
+    """
+    plateau : liste de liste
+    mot : string
+    position : tuple (x,y)
+    direction : 0=horizontal, 1=vertical
 
-Retourne False si on peut pas placer le mot
-sinon les lettres déjà sur la plteau à la place du mot si on peut le placer
+    Retourne False si on peut pas placer le mot
+    sinon les lettres déjà sur la plteau à la place du mot si on peut le placer
 
-"""
+    """
     lettresSup=compatible(plateau, mot, position, direction)
 #    for motCollateral in motsCollateraux:
 #        if not dico.verifier(motCollateral, dictionnaire):
 #            return False
     if (len(mot)+position[direction] <= 15 and
-        #            joueur.verifierChevalet(chevalet, mot, lettresSup) and
-        #            dico.verifier(mot, dictionnaire) and
-        #            estColle(plateau, mot, position, direction) and
+            joueur.verifierChevalet(chevalet, mot, lettresSup) and
+            dico.verifier(mot, dictionnaire) and
+            estColle(plateau, mot, position, direction) and
             lettresSup!=False):
         return lettresSup    
     return False
 
 def compatible(plateau, mot, position, direction):
-"""
-vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
-Retourne les lettres qui sont déjà sur la plateau
-et qu'on veut utiliser dans le mot
-"""
+    """
+    vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
+    Retourne les lettres qui sont déjà sur la plateau
+    et qu'on veut utiliser dans le mot
+    """
     lettresSup=[]
     j=0
     for i in echantillon(plateau, mot, position, direction):
@@ -81,9 +81,9 @@ et qu'on veut utiliser dans le mot
     return lettresSup
 
 def points(valeurs, mot, position, direction):
-"""
-retourne le nombre de points fait par le mot
-"""
+    """
+    retourne le nombre de points fait par le mot
+    """
     points=0
     if len(mot)==7: #Scrabble
         points+=50
@@ -92,9 +92,9 @@ retourne le nombre de points fait par le mot
     return points
 
 def findMotsCollateraux(plateau, mot, position, direction):
-"""
-retourne les mots engendrés par le mot placé
-"""
+    """
+    retourne les mots engendrés par le mot placé
+    """
     mots=[]
     x=position[0]
     y=position[1]
@@ -107,9 +107,9 @@ retourne les mots engendrés par le mot placé
     return mots
 
 def motEngendre(plateau, lettre, position, direction):
-"""
-pour une position donnée, donne le mot engendré par la pose de la lettre
-"""
+    """
+    pour une position donnée, donne le mot engendré par la pose de la lettre
+    """
     x=position[0]
     y=position[1]
     lettreActuelle = lettre
@@ -131,11 +131,11 @@ pour une position donnée, donne le mot engendré par la pose de la lettre
     
 
 def estColle(plateau, mot, position, direction):
-"""
-Retourne true si le mot a bien un point de contact avec les lettres en place,
-ou si c'est le premier tour (position = [7,7])
-Retourne False sinon
-"""
+    """
+    Retourne true si le mot a bien un point de contact avec les lettres en place,
+    ou si c'est le premier tour (position = [7,7])
+    Retourne False sinon
+    """
     x=position[0]
     y=position[1]
     for lettre in mot:
@@ -151,9 +151,9 @@ Retourne False sinon
     return False
 
 def echantillon(plateau, mot, position, direction):
-"""
-retourne le "mot" qui est en lieu et place de ce que le user veut placer
-"""
+    """
+    retourne le "mot" qui est en lieu et place de ce que le user veut placer
+    """
     echantillon=[]
     x=position[0]
     y=position[1]
