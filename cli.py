@@ -12,8 +12,16 @@ def afficher(plateau):
         print str(i)+espace,
         i += 1
         for case in x:
-            if type(case) == type((None,)):
-                print '+'+espace,
+            if case == (1,1): #normale
+                print '.'+espace,
+            elif case == (2,1): #mot double
+                print '#2'+espace,
+            elif case == (3,1): #mot triple
+                print '#3'+espace,
+            elif case == (1,2): #lettre double
+                print '%2'+espace,
+            elif case == (1,3): #lettre triple
+                print '%3'+espace, 
             else:
                 print str(case)+espace,
         print '\n\n'
