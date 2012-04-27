@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import cli
+import dico
+import humain
+import joueur
+import ordi
+import plateau
+import sac
 
 
 def chargerDico(chemin):
@@ -54,16 +60,16 @@ def main():
     while True: #Boucle pour chaque tour
         print "NOUVEAU TOUR"
         for i in range(int(nbreJoueurs)): #boucle pour chaque joueur
-            cli.plateau.afficher(Plateau)
+            cli.afficher(Plateau)
             print "JOUEUR "+str(i+1)
             print joueurs[i][0]
             points=0
             fini=False
             while points==0 and fini==False:
-                mot=cli.utilisateur.demande("mot ? ")
-                pos1=int(cli.utilisateur.demande("ligne ? "))
-                pos2=int(cli.utilisateur.demande("colonne ? "))
-                dir=int(cli.utilisateur.demande("direction ? "))
+                mot=cli.demande("mot ? ")
+                pos1=int(cli.demande("ligne ? "))
+                pos2=int(cli.demande("colonne ? "))
+                dir=int(cli.demande("direction ? "))
                 points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
                 if not points==0:
                     joueur.ajouterPoints(points, joueurs[i])
