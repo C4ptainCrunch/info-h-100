@@ -17,8 +17,12 @@ def afficher(plateau):
             else:
                 print str(case)+espace,
         print '\n\n'
-        
 
 
+def demande(phrase):
+    retour=raw_input(phrase)
+    if retour==42:
+        quit()
+    return retour
 
 

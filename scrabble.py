@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import main.plateau
-import main.sac
-import main.joueur
 import cli
+
 
 def chargerDico(chemin):
     fichier = open(chemin)
@@ -16,7 +13,7 @@ def chargerDico(chemin):
 def chargerLettres(chemin):
     """
         retourne la liste des lettres, le nombre qu'il y en a et la valeur en points
-    """
+        """
     fichier = open(chemin)
     liste = []
     for ligne in fichier:
@@ -28,7 +25,7 @@ def chargerLettres(chemin):
 def chargerValeurs(lettres):
     """
         retourne un dictionnaire avec comme clé la lettre et comme valeur le nombre de points que vaut la lettre
-    """
+        """
     valeurs={}
     for i in lettres:
         valeurs[i[0]]=i[2]
@@ -38,22 +35,22 @@ def main():
     ####################################
     ### initialisation des variables ###
     ####################################
-
+    
     Dico=chargerDico("assets/french.dic")
     Plateau=plateau.init()
     lettres=chargerLettres("assets/french.let")
     valeurs=chargerValeurs(lettres)
     Sac=sac.init(lettres)
     joueurs=[]
-
+    
     ####################################
     ######## Déroulement du jeu ########
     ####################################
-
+    
     nbreJoueurs=raw_input("Nombre Joueurs ? ")
     for i in range(int(nbreJoueurs)):
         joueurs.append(joueur.init(Sac))
-
+    
     while True: #Boucle pour chaque tour
         print "NOUVEAU TOUR"
         for i in range(int(nbreJoueurs)): #boucle pour chaque joueur
@@ -77,3 +74,7 @@ def main():
                 else:
                     print "Vous vous êtes trompés."
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
+
+
+if __name__ == "__main__":
+    main()
