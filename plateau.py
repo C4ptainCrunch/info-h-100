@@ -49,11 +49,10 @@ def verifier(plateau, mot, position, direction, dictionnaire, chevalet,motsColla
 #        if not dico.verifier(motCollateral, dictionnaire):
 #            return False
     if (len(mot)+position[direction] <= 15 and
-            joueur.verifierChevalet(chevalet, mot, lettresSup) and
-            dico.verifier(mot, dictionnaire) and
-            estColle(plateau, mot, position, direction) and
+        #            joueur.verifierChevalet(chevalet, mot, lettresSup) and
+        #            dico.verifier(mot, dictionnaire) and
+        #            estColle(plateau, mot, position, direction) and
             lettresSup!=False):
-        print 'cond pourrie'
         return lettresSup    
     return False
 
@@ -65,12 +64,11 @@ def compatible(plateau, mot, position, direction):
     lettresSup=[]
     j=0
     for i in echantillon(plateau, mot, position, direction):
-        if not (i==None or str(i)==mot[j]):
+        if not (estVide(i) or str(i)==mot[j]):
             return False
-        if not i==None:
+        if not estVide(i):
             lettresSup.append(str(i))
         j+=1
-    print lettresSup
     return lettresSup
 
 def points(valeurs, mot, position, direction):
@@ -106,7 +104,7 @@ def motEngendre(plateau, lettre, position, direction):
     x=position[0]
     y=position[1]
     lettreActuelle = lettre
-    while type(lettreActuelle) != type((None,)):
+    while not estVide(lettreActuelle):
         x-=abs(direction-1)
         y-=direction
         lettreActuelle = plateau[x][y]
@@ -114,7 +112,7 @@ def motEngendre(plateau, lettre, position, direction):
     y+=direction
     lettreActuelle = plateau[x][y]
     motEngendre = ''
-    while type(lettreActuelle) != type((None,)):
+    while not estVide(lettreActuelle):
         motEngendre += lettreActuelle
         x+=abs(direction-1)
         y+=direction
@@ -132,10 +130,10 @@ def estColle(plateau, mot, position, direction):
     y=position[1]
     for lettre in mot:
         if (plateau[x][y] or
-            plateau[x+1][y]!=None or
-            plateau[x-1][y]!=None or
-            plateau[x][y+1]!=None or
-            plateau[x][y-1]!=None or
+            (not estVide(plateau[x+1][y])) or
+            (not estVide(plateau[x-1][y])) or
+            (not estVide(plateau[x][y+1])) or
+            (not estVide(plateau[x][y-1])) or
             (position[0]==7 and position[1]==7)):
             return True
         x+=direction
@@ -154,3 +152,6 @@ def echantillon(plateau, mot, position, direction):
         x+=direction
         y+=abs(direction-1)
     return echantillon
+
+def estVide(case):
+    return type(case) == type((1,1))
