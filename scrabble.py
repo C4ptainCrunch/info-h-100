@@ -37,13 +37,26 @@ def chargerValeurs(lettres):
         valeurs[i[0]]=i[2]
     return valeurs
 
+def chargerCases(chemin):
+    """
+        retourne la liste des lettres multiplicatrices : position(x) - position(y) - multiplicateur de mot - multiplicateur de lettre
+    """
+    fichier = open(chemin)
+    liste = []
+    for ligne in fichier:
+        array = ligne.split(' ')
+        array[-1] = array[-1].rstrip()
+        liste.append(array)
+    return liste
+
 def main():
     ####################################
     ### initialisation des variables ###
     ####################################
     
     Dico=chargerDico("assets/french.dic")
-    Plateau=plateau.init()
+    multiplicateurs=chargerCases("assets/multiplicateurs")
+    Plateau=plateau.init(multiplicateurs)
     lettres=chargerLettres("assets/french.let")
     valeurs=chargerValeurs(lettres)
     Sac=sac.init(lettres)

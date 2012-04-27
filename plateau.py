@@ -3,9 +3,12 @@
 import dico
 import joueur
 
-def init():
+def init(multiplicateurs):
     """
-        Initialise le plateau avec uniquement des None
+        Initialise le plateau avec uniquement des (1,1)
+        Chaque case représentée par (a,b)
+        Ou a est le multiplicateur du mot et b le multiplicateur de la lettre
+        Dans "multiplicateurs", les deux premières données sont les coordonnées.
     """
     plateau = []
     for i in range(0,15):
@@ -13,6 +16,8 @@ def init():
         for j in range(0,15):
             ligne.append((1,1))
         plateau.append(ligne)
+    for case in multiplicateurs:
+        plateau[int(case[0])][int(case[1])]=(int(case[2]),int(case[3]))
     return plateau
 
 def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
