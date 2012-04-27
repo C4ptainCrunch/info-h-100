@@ -26,6 +26,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     retourne le nombre de points ou false si on peut pas placer
     retire du chevalet les lettres placées
     """
+    Points=points(plateau,valeurs, mot, position, direction)
     motsCollateraux = findMotsCollateraux(plateau, mot, position, direction)
     lettresSup=verifier(plateau, mot, position,
                         direction, dictionnaire, chevalet,motsCollateraux)
@@ -38,7 +39,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         x+=direction
         y+=abs(direction-1)
     joueur.retirerChevalet(chevalet, mot, lettresSup)
-    return points(valeurs, mot, position, direction)
+    return Points
 
 def verifier(plateau, mot, position, direction,
              dictionnaire, chevalet,motsCollateraux):
@@ -80,15 +81,23 @@ def compatible(plateau, mot, position, direction):
         j+=1
     return lettresSup
 
-def points(valeurs, mot, position, direction):
+def points(plateau, valeurs, mot, position, direction):
     """
     retourne le nombre de points fait par le mot
     """
     points=0
+    multiplicateurMot=1
+    x=position[0]
+    y=position[1]
     if len(mot)==7: #Scrabble
         points+=50
     for lettre in mot: #Points des lettres
-        points+=int(valeurs[lettre])
+        if estVide(plateau[x][y]):
+            points+=int(valeurs[lettre])*plateau[x][y][1]
+            multiplicateurMot*=plateau[x][y][0]
+        x+=direction
+        y+=abs(direction-1)
+    points*=multiplicateurMot
     return points
 
 def findMotsCollateraux(plateau, mot, position, direction):

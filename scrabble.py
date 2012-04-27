@@ -96,10 +96,10 @@ def main():
                     print "Vous vous êtes trompés."
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
         
-        cli.afficher(Plateau)
-        print "Il n'y a plus de lettre dans le sac ! Le jeu est fini."
-        gagnant=joueur.gagnant(joueurs)
-        print "Le gagnant est le joueur "+str(gagnant+1)+" avec "+str(joueurs[gagnant][1])+" points."
+    cli.afficher(Plateau)
+    print "Il n'y a plus de lettre dans le sac ! Le jeu est fini."
+    gagnant=joueur.gagnant(joueurs)
+    print "Le gagnant est le joueur "+str(gagnant+1)+" avec "+str(joueurs[gagnant][1])+" points."
         
 
 
