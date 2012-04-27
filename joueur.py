@@ -51,3 +51,13 @@ def verifierChevalet(chevalet, mot, lettresSup):
         else:
             return False
     return True
+
+def gagnant(joueurs):
+    """
+        Depuis la liste des joueurs, retourne l'indice du joueur qui le plus de points
+    """
+    gagnant=0
+    for i in range(len(joueurs)):
+        if joueurs[i][1]>joueurs[gagnant][1]:
+            gagnant=i
+    return gagnant
