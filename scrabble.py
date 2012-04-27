@@ -73,30 +73,33 @@ def main():
     while len(Sac)>0: #Boucle pour chaque tour
         print "NOUVEAU TOUR"
         for i in range(int(nbreJoueurs)): #boucle pour chaque joueur
-            while len(Sac)>0:
-                cli.afficher(Plateau)
-                print "JOUEUR "+str(i+1)
-                print joueurs[i][0]
-                points=0
-                fini=False
-                while points==0 and fini==False:
-                    mot=cli.demande("mot ? ")
-                    pos1=int(cli.demande("ligne ? "))
-                    pos2=int(cli.demande("colonne ? "))
-                    dir=int(cli.demande("direction ? "))
-                    points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
-                    if not points==0:
-                        joueur.ajouterPoints(points, joueurs[i])
-                        joueur.remplirChevalet(joueurs[i][0], Sac)
-                    elif mot=="0":
-                        print "Vous passez votre tour"
-                        fini=True
-                    else:
-                        print "Vous vous êtes trompés."
-                print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
+            if len(Sac)==0:
+                break
+            cli.afficher(Plateau)
+            print "JOUEUR "+str(i+1)
+            print joueurs[i][0]
+            points=0
+            fini=False
+            while points==0 and fini==False:
+                mot=cli.demande("mot ? ")
+                pos1=int(cli.demande("ligne ? "))
+                pos2=int(cli.demande("colonne ? "))
+                dir=int(cli.demande("direction ? "))
+                points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
+                if not points==0:
+                    joueur.ajouterPoints(points, joueurs[i])
+                    joueur.remplirChevalet(joueurs[i][0], Sac)
+                elif mot=="0":
+                    print "Vous passez votre tour"
+                    fini=True
+                else:
+                    print "Vous vous êtes trompés."
+            print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
         
+        cli.afficher(Plateau)
         print "Il n'y a plus de lettre dans le sac ! Le jeu est fini."
-        print "Le gagnant est le joueur "+str(joueur.gagnant(joueurs)+1)
+        gagnant=joueur.gagnant(joueurs)
+        print "Le gagnant est le joueur "+str(gagnant+1)+" avec "+str(joueurs[gagnant][1])+" points."
         
 
 
