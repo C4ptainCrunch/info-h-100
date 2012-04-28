@@ -10,6 +10,15 @@ import sac
 
 
 def chargerDico(chemin):
+    """
+    Charge en mémoire le dictionnaire du Scrabble.
+    
+    Arguments :
+        chemin (string) : chemin du fichier dictionnaire
+    
+    Valeur de retour : (tuple)
+        Ensemble des mots du dictionnaire
+    """
     fichier = open(chemin)
     liste = []
     for mot in fichier:
@@ -18,7 +27,15 @@ def chargerDico(chemin):
 
 def chargerLettres(chemin):
     """
-    retourne la liste des lettres, le nombre qu'il y en a et la valeur en points
+    Charge en mémoire la liste des lettres, le nombre qu'il y en a et le nombre
+    de points qu'elle vaut pour le jeu de Scrabble.
+    
+    Arguments :
+        chemin (string) : chemin du fichier des lettres
+    
+    Valeur de retour : (liste)
+        Liste des lettres, du nombre qu'il y en a et du nombre de points
+        qu'elles vallent pour le jeu de Scrabble.
     """
     fichier = open(chemin)
     liste = []
@@ -30,7 +47,14 @@ def chargerLettres(chemin):
 
 def chargerValeurs(lettres):
     """
-    retourne un dictionnaire avec comme clé la lettre et comme valeur le nombre de points que vaut la lettre
+    Retourne un dictionnaire qui associe à chaque lettre le nombre de points
+    qu'elle vaut
+    
+    Arguments :
+        lettres (liste) : Liste des lettres, du nombre qu'il y en a et du nombre de points qu'elles vallent pour le jeu de Scrabble.
+    
+    Valeur de retour : (dictionnaire)
+        valeurs : Associe à chaque lettre le nombre de points qu'elle vaut
     """
     valeurs={}
     for i in lettres:
