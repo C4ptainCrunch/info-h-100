@@ -92,6 +92,7 @@ def verifier(plateau, mot, position, direction,
     lettresExistantes=compatible(plateau, mot, position, direction)
     for motCollateral in motsCollateraux:
         if not dico.verifier(motCollateral[0], dictionnaire):
+            print "a"
             return False
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresExistantes) and
@@ -99,6 +100,7 @@ def verifier(plateau, mot, position, direction,
             estColle(plateau, mot, position, direction) and
             lettresExistantes!=False):
         return lettresExistantes
+    print "b"
     return False
 
 def compatible(plateau, mot, position, direction):
@@ -133,9 +135,12 @@ def points(plateau, valeurs, mot, position, direction, motsCollateraux):
     points=0
     mots=[[mot, position, direction, False]]
     if len(motsCollateraux)>0:
-        mots.append(motsCollateraux)
+        mots.extend(motsCollateraux)
+    print mots # A VIRER
     for i in mots:
+        print i # A VIRER
         points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
+        print points # A VIRER
     return points
     
 
