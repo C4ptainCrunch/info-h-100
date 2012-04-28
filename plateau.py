@@ -98,7 +98,7 @@ def verifier(plateau, mot, position, direction,
             dico.verifier(mot, dictionnaire) and
             estColle(plateau, mot, position, direction) and
             lettresExistantes!=False):
-        return lettresExistantes    
+        return lettresExistantes
     return False
 
 def compatible(plateau, mot, position, direction):
@@ -168,7 +168,7 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
         direction (int) : 0 si horizontalement, 1 si verticalement
     
     Valeur de retour : (liste)
-        mots : 
+        mots : Liste des mots perpendiculaires engendrés par la pose du mot.
         
     """
     mots=[]
@@ -176,7 +176,7 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     y=position[1]
     for lettre in mot:
         engendre=motEngendre(plateau, lettre, position, direction)
-        if len(engendre)>2:
+        if len(engendre)>1:
             mots.append(engendre)
         x+=direction
         y+=abs(direction-1)
@@ -184,7 +184,19 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
 
 def motEngendre(plateau, lettre, position, direction):
     """
-    pour une position donnée, donne le mot engendré par la pose de la lettre
+    Pour une position donnée, donne le mot engendré perpendiculairement par la
+    du mot, pour la lettre donnée.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        lettre (string) : Lettre qu'on place
+        position (tuple) : position x et y de la lettre
+        direction (int) : 0 si mot à placer horizontalement, 1 si verticalement
+    
+    Valeur de retour : (string)
+        motEngendre : retourne le mot engendré perpendiculairement par la pose
+            du mot, pour la lettre donnée
+        
     """
     x=position[0]
     y=position[1]
@@ -208,9 +220,20 @@ def motEngendre(plateau, lettre, position, direction):
 
 def estColle(plateau, mot, position, direction):
     """
-    Retourne true si le mot a bien un point de contact avec les lettres en place,
-    ou si c'est le premier tour (position = [7,7])
-    Retourne False sinon
+    Vérifie que le mot à placer a bien un point de contact avec les lettres
+    présentes sur le plateau.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+    
+    Valeurs de retour :
+        Si le mot a un point de contact ou que c'est le premier tour (en [7,7]):
+            True
+        Si le mot n'a pas de point de contact et que ce n'est pas en [7,7]:
+            False
     """
     x=position[0]
     y=position[1]
@@ -228,7 +251,19 @@ def estColle(plateau, mot, position, direction):
 
 def echantillon(plateau, mot, position, direction):
     """
-    retourne le "mot" qui est en lieu et place de ce que le user veut placer
+    Trouve le "mot" qui est en lieu et place de ce que l'utilisateur veut placer
+    C'est à dire l'ensemble de lettre et de cases vides qui se trouve sur le
+    plateau, là où l'utilisateur veut placer son mot.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+    
+    Valeur de retour : (liste)
+        echantillon : ensemble de lettre et de cases vides qui se trouve sur le
+            plateau, là où l'utilisateur veut placer son mot
     """
     echantillon=[]
     x=position[0]
@@ -240,4 +275,10 @@ def echantillon(plateau, mot, position, direction):
     return echantillon
 
 def estVide(case):
+    """
+    Vérifie qu'une case est vide. (et donc une liste)
+    
+    Arguments :
+        case (liste ou string) : valeur de la case (liste si vide)
+    """
     return type(case) == type((1,1))
