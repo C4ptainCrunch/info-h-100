@@ -18,8 +18,8 @@ def chargerDico(chemin):
 
 def chargerLettres(chemin):
     """
-        retourne la liste des lettres, le nombre qu'il y en a et la valeur en points
-        """
+    retourne la liste des lettres, le nombre qu'il y en a et la valeur en points
+    """
     fichier = open(chemin)
     liste = []
     for ligne in fichier:
@@ -30,8 +30,8 @@ def chargerLettres(chemin):
 
 def chargerValeurs(lettres):
     """
-        retourne un dictionnaire avec comme clé la lettre et comme valeur le nombre de points que vaut la lettre
-        """
+    retourne un dictionnaire avec comme clé la lettre et comme valeur le nombre de points que vaut la lettre
+    """
     valeurs={}
     for i in lettres:
         valeurs[i[0]]=i[2]
@@ -39,7 +39,7 @@ def chargerValeurs(lettres):
 
 def chargerMultiplicateurs(chemin):
     """
-        retourne la liste des lettres multiplicatrices : position(x) - position(y) - multiplicateur de mot - multiplicateur de lettre
+    retourne la liste des lettres multiplicatrices : position(x) - position(y) - multiplicateur de mot - multiplicateur de lettre
     """
     fichier = open(chemin)
     liste = []
@@ -81,20 +81,24 @@ def main():
                 mot=cli.demanderMot()   
                 if mot == False:
                     delete = cli.demanderJeter()
-                    cli.info('Vous jetez la lettre '+delete)
-                    chevalet.remove(delete)
-                    joueur.remplirChevalet(chevalet, Sac)
-                    tourFini = True
+                    if delete in chevalet:
+                        cli.info('Vous jetez la lettre '+delete)
+                        chevalet.remove(delete)
+                        joueur.remplirChevalet(chevalet, Sac)
+                        tourFini = True
+                    else : 
+                        cli.info('Vous n\'avez pas cette lettre, veuillez recommencer.')
                 else:
-                    posx=int(cli.demande("ligne ? "))
-                    posy=int(cli.demande("colonne ? "))
-                    dir=int(cli.demande("direction ? "))
-                    points=plateau.placer(Plateau, mot, (posx,posy), dir, Dico, joueurs[i][0], valeurs)
+                    posx=int(cli.demanderCoord('ligne'))
+                    posy=int(cli.demanderCoord('colonne'))
+                    dir=int(cli.demanderDirection())
+                    points=plateau.placer(Plateau, mot, (posx,posy),
+                                          dir, Dico, joueurs[i][0], valeurs)
                     if points!=0:
                         joueur.ajouterPoints(points, joueurs[i])
                         joueur.remplirChevalet(chevalet, Sac)
                     else:
-                        print "Vous vous êtes trompés."
+                        cli.info('Vous vous êtes trompé, veuillez recommencer.')
             #Fin du tour
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
         
