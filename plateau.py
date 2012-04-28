@@ -175,8 +175,8 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     x=position[0]
     y=position[1]
     for lettre in mot:
-        engendre=motEngendre(plateau, lettre, position, direction)
-        if len(engendre)>2:
+        engendre=motEngendre(plateau, lettre, (x,y), direction)
+        if len(engendre)>1:
             mots.append(engendre)
         x+=direction
         y+=abs(direction-1)
@@ -188,7 +188,9 @@ def motEngendre(plateau, lettre, position, direction):
     """
     x=position[0]
     y=position[1]
-    lettreActuelle = lettre
+    temp = plateau[x][y]
+    plateau[x][y] = lettre
+    lettreActuelle = plateau[x][y]
     while not estVide(lettreActuelle):
         x-=abs(direction-1)
         y-=direction
@@ -202,6 +204,7 @@ def motEngendre(plateau, lettre, position, direction):
         x+=abs(direction-1)
         y+=direction
         lettreActuelle = plateau[x][y]
+    plateau[position[0]][position[1]] = temp
     return motEngendre
         
     
