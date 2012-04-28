@@ -54,9 +54,9 @@ def verifier(plateau, mot, position, direction,
 
     """
     lettresSup=compatible(plateau, mot, position, direction)
-#    for motCollateral in motsCollateraux:
-#        if not dico.verifier(motCollateral, dictionnaire):
-#            return False
+    for motCollateral in motsCollateraux:
+        if not dico.verifier(motCollateral, dictionnaire):
+            return False
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresSup) and
             dico.verifier(mot, dictionnaire) and
