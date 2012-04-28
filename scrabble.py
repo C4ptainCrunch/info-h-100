@@ -79,19 +79,19 @@ def main():
             print "JOUEUR "+str(i+1)
             print joueurs[i][0]
             points=0
-            fini=False
-            while points==0 and fini==False:
+            tourFini=False
+            while points==0 and not tourFini:
                 mot=cli.demande("mot ? ")
-                pos1=int(cli.demande("ligne ? "))
-                pos2=int(cli.demande("colonne ? "))
+                posx=int(cli.demande("ligne ? "))
+                posy=int(cli.demande("colonne ? "))
                 dir=int(cli.demande("direction ? "))
-                points=plateau.placer(Plateau, mot, (pos1,pos2), dir, Dico, joueurs[i][0], valeurs)
-                if not points==0:
+                points=plateau.placer(Plateau, mot, (posx,posy), dir, Dico, joueurs[i][0], valeurs)
+                if points!=0:
                     joueur.ajouterPoints(points, joueurs[i])
                     joueur.remplirChevalet(joueurs[i][0], Sac)
                 elif mot=="0":
                     print "Vous passez votre tour"
-                    fini=True
+                    tourFini=True
                 else:
                     print "Vous vous êtes trompés."
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
