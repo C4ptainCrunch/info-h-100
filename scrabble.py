@@ -50,50 +50,52 @@ def chargerMultiplicateurs(chemin):
     return liste
 
 def main():
-    ####################################
-    ### initialisation des variables ###
-    ####################################
-    
-    Dico=chargerDico("assets/french.dic")
-    multiplicateurs=chargerMultiplicateurs("assets/multiplicateurs")
+    #initialisation des variables
+    Dico=chargerDico('assets/french.dic')
+    multiplicateurs=chargerMultiplicateurs('assets/multiplicateurs')
     Plateau=plateau.init(multiplicateurs)
-    lettres=chargerLettres("assets/french.let")
+    lettres=chargerLettres('assets/french.let')
     valeurs=chargerValeurs(lettres)
     Sac=sac.init(lettres)
     joueurs=[]
-    
-    ####################################
-    ######## Déroulement du jeu ########
-    ####################################
-    
-    nbreJoueurs=raw_input("Nombre Joueurs ? ")
-    for i in range(int(nbreJoueurs)):
+
+    nbreJoueurs=cli.demanderJoueur()
+    for i in range(nbreJoueurs):
         joueurs.append(joueur.init(Sac))
-    
-    while len(Sac)>0: #Boucle pour chaque tour
-        print "NOUVEAU TOUR"
-        for i in range(int(nbreJoueurs)): #boucle pour chaque joueur
+    manche = 0
+    #boucle = manche (tour de plateau)
+    while len(Sac)>0:
+        manche += 1
+        cli.info('Manche numéro '+str(manche))
+        #Boucle pour chaque joueur
+        for i in range(int(nbreJoueurs)):
             if len(Sac)==0:
                 break
             cli.afficher(Plateau)
-            print "JOUEUR "+str(i+1)
-            print joueurs[i][0]
+            cli.info('C\'est au tour du joueur '+str(i+1))
+            chevalet = joueurs[i][0]
+            cli.afficherChevalet(chevalet)
             points=0
             tourFini=False
             while points==0 and not tourFini:
-                mot=cli.demande("mot ? ")
-                posx=int(cli.demande("ligne ? "))
-                posy=int(cli.demande("colonne ? "))
-                dir=int(cli.demande("direction ? "))
-                points=plateau.placer(Plateau, mot, (posx,posy), dir, Dico, joueurs[i][0], valeurs)
-                if points!=0:
-                    joueur.ajouterPoints(points, joueurs[i])
-                    joueur.remplirChevalet(joueurs[i][0], Sac)
-                elif mot=="0":
-                    print "Vous passez votre tour"
-                    tourFini=True
+                mot=cli.demanderMot()   
+                if mot == False:
+                    delete = cli.demanderJeter()
+                    cli.info('Vous jetez la lettre '+delete)
+                    chevalet.remove(delete)
+                    joueur.remplirChevalet(chevalet, Sac)
+                    tourFini = True
                 else:
-                    print "Vous vous êtes trompés."
+                    posx=int(cli.demande("ligne ? "))
+                    posy=int(cli.demande("colonne ? "))
+                    dir=int(cli.demande("direction ? "))
+                    points=plateau.placer(Plateau, mot, (posx,posy), dir, Dico, joueurs[i][0], valeurs)
+                    if points!=0:
+                        joueur.ajouterPoints(points, joueurs[i])
+                        joueur.remplirChevalet(chevalet, Sac)
+                    else:
+                        print "Vous vous êtes trompés."
+            #Fin du tour
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
         
     cli.afficher(Plateau)

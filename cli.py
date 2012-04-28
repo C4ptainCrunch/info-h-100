@@ -28,9 +28,38 @@ def afficher(plateau):
 
 
 def demande(phrase):
-    retour=raw_input(phrase)
+    retour=raw_input(phrase+' ')
     if retour==42:
         quit()
     return retour
 
+def info(phrase):
+    print phrase
 
+def afficherChevalet(chevalet):
+    print 'Chevalet :',
+    for lettre in chevalet:
+        print lettre + ' ',
+    print ''
+
+def demanderJoueur():
+    nb = 0
+    while not (0 < nb < 5):
+        nb = demande('Nombre de joueurs ?')
+        if nb.isdigit():
+            nb = int(nb)
+    return nb
+
+def demanderJeter():
+    delete = ''
+    while not (len(delete) == 1 and delete.isalpha()):
+        delete = demande('Quelle lettre voulez vous jeter ?')
+        if delete.isalpha():
+            delete = delete.upper()
+    return delete
+
+def demanderMot():
+    mot = demande('Quel mot voulez-vous former ?')
+    return (False if mot is '' else mot)
+
+    
