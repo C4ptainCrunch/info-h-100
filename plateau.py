@@ -51,7 +51,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         Si le mot peut être placé :
             Points : nombre de points qu'engendre le placement du mot.
     """
-    Points=points(plateau,valeurs, mot, position, direction, False)
+    Points=pointsMot(plateau,valeurs, mot, position, direction, False)
     motsCollateraux = trouverMotsCollateraux(plateau, mot, position, direction)
     lettresExistantes=verifier(plateau, mot, position,
                         direction, dictionnaire, chevalet,motsCollateraux)
@@ -125,7 +125,7 @@ def compatible(plateau, mot, position, direction):
         j+=1
     return lettresExistantes
 
-def points(plateau, valeurs, mot, position, direction, estCollateral):
+def pointsMot(plateau, valeurs, mot, position, direction, estCollateral):
     """
     Calcule le nombre de points engendrés par la pose du mot.
     
