@@ -52,14 +52,14 @@ def demanderJoueur():
 
 def demanderJeter():
     delete = '%'
-    while not (len(delete) == 1 and delete.isalpha()):
-        delete = demande('Quelle lettre voulez vous jeter ?')
+    while not (delete == '' or(len(delete) == 1 and delete.isalpha())):
+        delete = demande('Quelle lettre voulez vous jeter ? Tapez enter pour finir votre tour.')
         if delete.isalpha():
             delete = delete.upper()
     return delete
 
 def demanderMot():
-    mot = demande('Quel mot voulez-vous former ?')
+    mot = demande('Quel mot voulez-vous former ? Tapez enter pour jeter des lettres.')
     return (False if mot is '' else mot.upper())
 
 def demanderCoord(sens):

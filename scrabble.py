@@ -104,14 +104,16 @@ def main():
             while points==0 and not tourFini:
                 mot=cli.demanderMot()   
                 if mot == False:
-                    delete = cli.demanderJeter()
-                    if delete in chevalet:
-                        cli.info('Vous jetez la lettre '+delete)
-                        chevalet.remove(delete)
-                        joueur.remplirChevalet(chevalet, Sac)
-                        tourFini = True
-                    else : 
-                        cli.info('Vous n\'avez pas cette lettre, veuillez recommencer.')
+                    delete = '%'
+                    while delete != '':
+                        delete = cli.demanderJeter()
+                        if delete in chevalet:
+                            cli.info('Vous jetez la lettre '+delete)
+                            chevalet.remove(delete)
+                            joueur.remplirChevalet(chevalet, Sac)
+                        else : 
+                            cli.info('Vous n\'avez pas cette lettre, veuillez recommencer.')
+                    tourFini = True
                 else:
                     posx=int(cli.demanderCoord('ligne'))
                     posy=int(cli.demanderCoord('colonne'))
