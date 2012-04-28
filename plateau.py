@@ -51,8 +51,8 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         Si le mot peut être placé :
             Points : nombre de points qu'engendre le placement du mot.
     """
-    Points=pointsMot(plateau,valeurs, mot, position, direction, False)
     motsCollateraux = trouverMotsCollateraux(plateau, mot, position, direction)
+    Points=points(plateau,valeurs, mot, position, direction, motsCollateraux)
     lettresExistantes=verifier(plateau, mot, position,
                         direction, dictionnaire, chevalet,motsCollateraux)
     if lettresExistantes==False:
@@ -91,7 +91,7 @@ def verifier(plateau, mot, position, direction,
     """
     lettresExistantes=compatible(plateau, mot, position, direction)
     for motCollateral in motsCollateraux:
-        if not dico.verifier(motCollateral, dictionnaire):
+        if not dico.verifier(motCollateral[0], dictionnaire):
             return False
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresExistantes) and
@@ -124,6 +124,20 @@ def compatible(plateau, mot, position, direction):
             lettresExistantes.append(str(i))
         j+=1
     return lettresExistantes
+
+def points(plateau, valeurs, mot, position, direction, motsCollateraux):
+    """
+        Calcule le nombre de points engendrés par la pose du mot et des mots
+        perpendiculaires.
+    """
+    points=0
+    mots=[[mot, position, direction, False]]
+    if len(motsCollateraux)>0:
+        mots.append(motsCollateraux)
+    for i in mots:
+        points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
+    return points
+    
 
 def pointsMot(plateau, valeurs, mot, position, direction, estCollateral):
     """
@@ -176,7 +190,7 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     y=position[1]
     for lettre in mot:
         engendre=motEngendre(plateau, lettre, (x,y), direction)
-        if len(engendre)>1:
+        if len(engendre[0])>1:
             mots.append(engendre)
         x+=direction
         y+=abs(direction-1)
@@ -193,9 +207,10 @@ def motEngendre(plateau, lettre, position, direction):
         position (tuple) : position x et y de la lettre
         direction (int) : 0 si mot à placer horizontalement, 1 si verticalement
     
-    Valeur de retour : (string)
+    Valeur de retour : (liste)
         motEngendre : retourne le mot engendré perpendiculairement par la pose
-            du mot, pour la lettre donnée
+            du mot, pour la lettre donnée, avec sa position de début et sa
+            direction
         
     """
     x=position[0]
@@ -209,6 +224,8 @@ def motEngendre(plateau, lettre, position, direction):
         lettreActuelle = plateau[x][y]
     x+=abs(direction-1)
     y+=direction
+    pos=(x,y)
+    dir=abs(direction-1)
     lettreActuelle = plateau[x][y]
     motEngendre = ''
     while not estVide(lettreActuelle):
@@ -217,7 +234,7 @@ def motEngendre(plateau, lettre, position, direction):
         y+=direction
         lettreActuelle = plateau[x][y]
     plateau[position[0]][position[1]] = temp
-    return motEngendre
+    return [motEngendre, pos, dir, True] # True=estCollateral
         
     
 
