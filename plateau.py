@@ -51,11 +51,11 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         Si le mot peut être placé :
             Points : nombre de points qu'engendre le placement du mot.
     """
-    Points=points(plateau,valeurs, mot, position, direction)
-    motsCollateraux = findMotsCollateraux(plateau, mot, position, direction)
-    lettresSup=verifier(plateau, mot, position,
+    Points=points(plateau,valeurs, mot, position, direction, False)
+    motsCollateraux = trouverMotsCollateraux(plateau, mot, position, direction)
+    lettresExistantes=verifier(plateau, mot, position,
                         direction, dictionnaire, chevalet,motsCollateraux)
-    if lettresSup==False:
+    if lettresExistantes==False:
         return False
     x=position[0]
     y=position[1]
@@ -63,7 +63,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
         plateau[x][y]=mot[i]
         x+=direction
         y+=abs(direction-1)
-    joueur.retirerChevalet(chevalet, mot, lettresSup)
+    joueur.retirerChevalet(chevalet, mot, lettresExistantes)
     return Points
 
 def verifier(plateau, mot, position, direction,
@@ -89,16 +89,16 @@ def verifier(plateau, mot, position, direction,
             plateau aux emplacements du nouveau mot.
 
     """
-    lettresSup=compatible(plateau, mot, position, direction)
+    lettresExistantes=compatible(plateau, mot, position, direction)
     for motCollateral in motsCollateraux:
         if not dico.verifier(motCollateral, dictionnaire):
             return False
     if (len(mot)+position[direction] <= 15 and
-            joueur.verifierChevalet(chevalet, mot, lettresSup) and
+            joueur.verifierChevalet(chevalet, mot, lettresExistantes) and
             dico.verifier(mot, dictionnaire) and
             estColle(plateau, mot, position, direction) and
-            lettresSup!=False):
-        return lettresSup    
+            lettresExistantes!=False):
+        return lettresExistantes    
     return False
 
 def compatible(plateau, mot, position, direction):
@@ -115,17 +115,17 @@ def compatible(plateau, mot, position, direction):
         lettresExistantes (liste) : liste des lettres déjà présentes sur le
         plateau aux emplacements du nouveau mot.
     """
-    lettresSup=[]
+    lettresExistantes=[]
     j=0
     for i in echantillon(plateau, mot, position, direction):
         if not (estVide(i) or str(i)==mot[j]):
             return False
         if not estVide(i):
-            lettresSup.append(str(i))
+            lettresExistantes.append(str(i))
         j+=1
-    return lettresSup
+    return lettresExistantes
 
-def points(plateau, valeurs, mot, position, direction):
+def points(plateau, valeurs, mot, position, direction, estCollateral):
     """
     Calcule le nombre de points engendrés par la pose du mot.
     
@@ -142,20 +142,22 @@ def points(plateau, valeurs, mot, position, direction):
     """
     points=0
     multiplicateurMot=1
-    x=position[0]
+    x=position[0] #position de la première lettre
     y=position[1]
-    if len(mot)==7: #Scrabble
+    if len(mot)==7 and not estCollateral: #Scrabble
         points+=50
     for lettre in mot: #Points des lettres
         if estVide(plateau[x][y]):
             points+=int(valeurs[lettre])*plateau[x][y][1]
             multiplicateurMot*=plateau[x][y][0]
+        else:
+            points+=int(valeurs[lettre])
         x+=direction
         y+=abs(direction-1)
     points*=multiplicateurMot
     return points
 
-def findMotsCollateraux(plateau, mot, position, direction):
+def trouverMotsCollateraux(plateau, mot, position, direction):
     """
     Trouve les mots perpendiculaires engendrés par la pose du mot.
     
