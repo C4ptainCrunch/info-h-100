@@ -5,10 +5,19 @@ import joueur
 
 def init(multiplicateurs):
     """
-    Initialise le plateau avec uniquement des (1,1)
-    Chaque case représentée par (a,b)
-    Ou a est le multiplicateur du mot et b le multiplicateur de la lettre
-    Dans "multiplicateurs", les deux premières données sont les coordonnées.
+    Initialise un plateau de jeu
+    
+    Arguments :
+        multiplicateurs (liste) : liste des cases avec multiplicateur.
+            Les deux premiers éléments de la liste représentatent la position
+            (x, y), le troisième représente le multiplicateur du mot et le
+            dernier le multiplicateur de la lettre.
+    
+    Valeur de retour : (liste)
+        Retourne une liste de listes de tuples. Chaque sous-liste représente une
+        ligne du plateau. Dans chaque sous-tuple (a,b), le premier élément (a)
+        est le multiplicateur du mot et le second (b) le multiplicateur de la
+        lettre.
     """
     plateau = []
     for i in range(0,15):
@@ -22,9 +31,25 @@ def init(multiplicateurs):
 
 def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     """
-    place dans le plateau le mot à la position dans la direction
-    retourne le nombre de points ou false si on peut pas placer
-    retire du chevalet les lettres placées
+    Vérifie que le mot peut être posé.
+    S'il peut, place dans le plateau le mot donnée à la position donnée dans la
+    direction donnée, et retire du chevalet les lettres placées.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+        dictionnaire (tuple) : Chaque élément du tuple est un mot autorisé
+        chevalet (liste) : Liste des lettres du chevalet du joueur
+        valeurs (dictionnaire) : Associe à chaque lettre le nombre de point
+            qu'elle vaut au Scrabble
+    
+    Valeurs de retour :
+        Si le mot ne peut être placé :
+            False
+        Si le mot peut être placé :
+            Points : nombre de points qu'engendre le placement du mot.
     """
     Points=points(plateau,valeurs, mot, position, direction)
     motsCollateraux = findMotsCollateraux(plateau, mot, position, direction)
@@ -44,13 +69,24 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
 def verifier(plateau, mot, position, direction,
              dictionnaire, chevalet,motsCollateraux):
     """
-    plateau : liste de liste
-    mot : string
-    position : tuple (x,y)
-    direction : 0=horizontal, 1=vertical
-
-    Retourne False si on peut pas placer le mot
-    sinon les lettres déjà sur la plteau à la place du mot si on peut le placer
+    Vérifie que le mot à placer peut effectivement être placé.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+        dictionnaire (tuple) : Chaque élément du tuple est un mot autorisé
+        chevalet (liste) : Liste des lettres du chevalet du joueur
+        motsCollateraux (liste) : Liste des mots perpendiculaires engendrés par
+            la pose du mot.
+    
+    Valeurs de retour :
+        Si le mot ne peut être placé :
+            False
+        Si le mot peut être placé :
+            lettresExistantes (liste) : liste des lettres déjà présentes sur le
+            plateau aux emplacements du nouveau mot.
 
     """
     lettresSup=compatible(plateau, mot, position, direction)
@@ -67,9 +103,17 @@ def verifier(plateau, mot, position, direction,
 
 def compatible(plateau, mot, position, direction):
     """
-    vérifie que le mot puisse être mis par rapport aux autres lettres du jeu
-    Retourne les lettres qui sont déjà sur la plateau
-    et qu'on veut utiliser dans le mot
+    Vérifie que le mot puisse être mis par rapport aux autres lettres du jeu.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+    
+    Valeur de retour : (liste)
+        lettresExistantes (liste) : liste des lettres déjà présentes sur le
+        plateau aux emplacements du nouveau mot.
     """
     lettresSup=[]
     j=0
@@ -83,7 +127,18 @@ def compatible(plateau, mot, position, direction):
 
 def points(plateau, valeurs, mot, position, direction):
     """
-    retourne le nombre de points fait par le mot
+    Calcule le nombre de points engendrés par la pose du mot.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        valeurs (dictionnaire) : Associe à chaque lettre le nombre de point
+            qu'elle vaut au Scrabble
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+    
+    Valeur de retour : (int)
+        points : nombre de points engendrés par la pose du mot.
     """
     points=0
     multiplicateurMot=1
@@ -102,7 +157,17 @@ def points(plateau, valeurs, mot, position, direction):
 
 def findMotsCollateraux(plateau, mot, position, direction):
     """
-    retourne les mots engendrés par le mot placé
+    Trouve les mots perpendiculaires engendrés par la pose du mot.
+    
+    Arguments :
+        plateau (liste) : Le plateau de jeu
+        mot (string) : Le mot à placer sur le plateau
+        position (tuple) : position x et y de la première lettre du mot à placer
+        direction (int) : 0 si horizontalement, 1 si verticalement
+    
+    Valeur de retour : (liste)
+        mots : 
+        
     """
     mots=[]
     x=position[0]
