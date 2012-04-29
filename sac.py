@@ -9,7 +9,6 @@ def init(lettres):
         n=int(lettre[1])
         for i in range(n):
             sac.append(lettre[0])
-    random.shuffle(sac)
     return sac
 
 def piocher(sac):
