@@ -4,8 +4,13 @@
 import sac
 
 def init(Sac):
-    """
-    initialise un joueur [chevalet, points] sous forme de liste
+    """Initialise un joueur
+        
+        Arguments :
+        Sac (list) : Liste de lettres.
+        
+        Valeur de retour : (list)
+        Liste de 2 éléments : le premier étant un chevalet (list) et le deuxième 0 (int) étant le nombre de points du joueur
     """
     joueur=[]
     joueur.append(creerChevalet(Sac))
@@ -13,31 +18,57 @@ def init(Sac):
     return joueur
 
 def creerChevalet(Sac):
+    """Crée un chevalet en enlevant des lettres de Sac
+        
+        Arguments :
+        Sac (list) : Liste des lettres du sac.
+        
+        Valeur de retour : (list)
+        Liste de 7 éléments : chaque élément étant une lettre majuscule (string)
+    """
     chevalet=[]
     for i in range(0,7):
         chevalet.append(sac.piocher(Sac))
     return chevalet
 
 def ajouterPoints(n, joueur):
+    """Ajoute n points à un joueur
+        
+        Arguments :
+        n (int) : Liste de lettres.
+        
+        Valeur de retour : (list)
+        Liste de 7 éléments : chaque élément étant une lettre majuscule (string)
+    """
     joueur[1]+=n
 
 def remplirChevalet(chevalet, Sac):
-    """
-    remplit le chevalet pour qu'il arrive à 7 lettres
+    """Re-remplit le chevalet pour qu'il contienne 7 lettres
+        
+        Arguments:
+        chevalet (list) : chevalet à re-remplir
+        Sac (list) : Liste des lettres du sac
+        
+        Valeur de retour : (None)
     """
     for i in range(len(chevalet), 7):
         chevalet.append(sac.piocher(Sac))
 
-def retirerChevalet(chevalet, mot, lettresSup):
+def retirerChevalet(chevalet, mot, lettresExistantes):
+    """Retire le mot du chevalet
+        (sans retirer les lettres du mot qui sont déjà sur le plateau)
+        Attention, d'abord vérifier que mot dans chevalet.
+        
+        Arguments:
+        chevalet (list) : chevalet à re-remplir
+        mot (string) : mot que l'utilisateur a entré
+        lettresExistantes (string) : lettres de mot qui sont déjà sur le plateau 
+        
+        Valeur de retour : (None)
     """
-    Retire le mot du chevalet (attention, d'abord vérifier que mot dans chevalet) sans retirer les lettres (lettresSup) qui sont déjà sur le plateau
-    """
-    temp=lettresSup+chevalet # Magouille par rapport à l'attribution des variables...
-    #Seul moyen de "extend" par l'avant de la liste
+    chevalet.extend(lettresExistantes)
     for lettre in mot:
-        temp.remove(lettre)
-    del(chevalet[:])
-    chevalet.extend(temp)
+        chevalet.remove(lettre)
 
 def verifierChevalet(chevalet, mot, lettresSup):
     """
