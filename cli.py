@@ -70,15 +70,10 @@ def demande(phrase):
         
         Valeur de retour : (string) Ce que python  à récupéré su STDIN
     """
-    print "DEBUT"
-    print "phrase = ", phrase
     retour=raw_input(phrase+' ')
     if retour==42:
         print 'Vous avez trouvé la réponse : Bravo !'
         quit()
-    
-    print "valeur de retour : ", retour
-    print "FIN"
     return retour
 
 def info(phrase):
