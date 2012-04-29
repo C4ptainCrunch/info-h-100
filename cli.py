@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import string
+import unicodedata
+
+
+def asciiConvert(chaine):
+    data = chaine.decode('utf-8')
+    return ''.join(x for x in unicodedata.normalize('NFKD', data) if \
+                   unicodedata.category(x)[0] == 'L').lower()
+
+
 
 def afficher(plateau):
     espace = '\t'
@@ -59,9 +69,11 @@ def demanderJeter():
     return delete
 
 def demanderMot():
-    mot = demande('Quel mot voulez-vous former ? Tapez enter pour jeter des lettres.')
+    mot = asciiConvert(demande('Quel mot voulez-vous former ? Tapez enter pour jeter des lettres.'))
+    
     return (False if mot is '' else mot.upper())
 
+print demanderMot()
 def demanderCoord(sens):
     coord = -1
     while not (0 <= coord <= 14):
