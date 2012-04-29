@@ -136,11 +136,11 @@ def points(plateau, valeurs, mot, position, direction, motsCollateraux):
     mots=[[mot, position, direction, False]]
     if len(motsCollateraux)>0:
         mots.extend(motsCollateraux)
-    print mots # A VIRER
+    #print mots # A VIRER
     for i in mots:
-        print i # A VIRER
+        #print i # A VIRER
         points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
-        print points # A VIRER
+        #print points # A VIRER
     return points
     
 
