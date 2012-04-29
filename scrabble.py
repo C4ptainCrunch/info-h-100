@@ -101,10 +101,11 @@ def main():
             cli.afficherChevalet(chevalet)
             points=0
             tourFini=False
-            while points==0 and not tourFini:
+            while not tourFini:
                 mot=cli.demanderMot()   
-                if mot == False:
+                if mot == False: #Si le joueur veut jeter une lettre
                     delete = '%'
+                    #Tant que le joueur veut jeter des lettres
                     while delete != '':
                         delete = cli.demanderJeter()
                         if delete in chevalet:
@@ -113,22 +114,24 @@ def main():
                             joueur.remplirChevalet(chevalet, Sac)
                         else : 
                             cli.info('Vous n\'avez pas cette lettre, veuillez recommencer.')
-                    tourFini = True
-                else:
+                    tourFini = True #Quand le joueur ne veut plus jeter
+                    #de lettres, on finit le tour
+                else: #Si je joueur a rentré un mot
                     posx=int(cli.demanderCoord('ligne'))
                     posy=int(cli.demanderCoord('colonne'))
                     dir=int(cli.demanderDirection())
                     points=plateau.placer(Plateau, mot, (posx,posy),
                                           dir, Dico, joueurs[i][0], valeurs)
-                    if points!=0:
+                    if points!=0: #Si le mot a été placé
                         joueur.ajouterPoints(points, joueurs[i])
                         joueur.remplirChevalet(chevalet, Sac)
+                        tourFini = True
                     else:
                         cli.info('Vous vous êtes trompé, veuillez recommencer.')
             #Fin du tour
             print "Nombre de points gagnés : "+str(points)
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
-        
+    #Fin du jeu
     cli.afficher(Plateau)
     print "Il n'y a plus de lettre dans le sac ! Le jeu est fini."
     gagnant=joueur.gagnant(joueurs)
