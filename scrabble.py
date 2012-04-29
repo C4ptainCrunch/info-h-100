@@ -126,6 +126,7 @@ def main():
                     else:
                         cli.info('Vous vous êtes trompé, veuillez recommencer.')
             #Fin du tour
+            print "Nombre de points gagnés : "+str(points)
             print "Joueur "+str(i+1)+" : "+str(joueurs[i][1])+" points."
         
     cli.afficher(Plateau)
