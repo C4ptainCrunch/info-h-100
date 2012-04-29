@@ -39,7 +39,7 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     
     Arguments :
         plateau (liste) : Le plateau de jeu
-        mot (string) : Le mot à placer sur le plateau
+        mot (string) : Le mot en majuscules à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
         dictionnaire (tuple) : Chaque élément du tuple est un mot autorisé
