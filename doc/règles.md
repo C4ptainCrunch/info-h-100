@@ -1,27 +1,107 @@
-# Projet info-H-100 : Scrabble en python
+# Manuel d'utilisation
 
-Bla Bla bla
+Voici le déroulement d'une partie-type du jeu de Scrabble simplifié.
+Les règles du jeu diffèrent quelque peu des règles officielles du Scrabble.
 
-## Sous-titre
+Le but du jeu est de poser des mots les plus longs possible, à partir des lettres situées dans le chevalet du joueur.
 
-The latest version of the Solarized theme for Mou can be found at the [GitHub repository for this theme](https://github.com/CodeCatalyst/mou-theme-solarized).
+Chaque lettre valant un certain nombre de points, il peut être intéressant de placer des lettres à plus fortes valeurs.
+(Les détails pratiques du calcul des points sont affichés plus bas)
 
-To contribute, file bug reports or issues, please visit the [main Solarized GitHub repository](https://github.com/altercation/solarized).
+## Déroulement du jeu
 
-## Installation
+Commencez par spécifier au programme le **nombre de joueurs** qui participent. (Maximum 4)
 
-1. Copy the `*.txt` files from the `Theme` directory to:
+### Première manche
 
-	`~/Library/Application Support/Mou/Themes`
+#### Joueur 1
 
-2. Copy the `*.css` files from the `CSS` directory to:
+Le plateau de jeu est affiché, ainsi que le chevalet du joueur.
+<br>
+<br>
 
-	`~/Library/Application Support/Mou/CSS`
+![image](images/debut.png)
 
-3. Open Mou's `Preferences` and navigate to the `Themes` tab.  Select one of the Solarized themes in the `Use Theme:` dropdown.  If Mou was open when you copied the theme files, you may need to hit the `Reload` button.
+Au premier tour, le premier joueur est **obligé** de placer le mot tel qu'une des lettres soit positionnée au centre du plateau. Il peut également choisir de ne rien placer, et de se débarasser de certaines lettres.
 
-4. Open Mou's `Preferences` and navigate to the `CSS` tab.  Select one of the Solarized themes in the `Use CSS:` dropdown.  If Mou was open when you copied the CSS files, you may need to hit the `Reload` button.
+Une fois qu'il a choisi le(s) lettre(s) dont il veut se débarasser, le chevalet est re-rempli à partir du sac.
 
-## Screenshot
+#### Joueur 2
 
-![Screenshot](https://github.com/CodeCatalyst/mou-theme-solarized/raw/master/screenshot.png)
+Une fois qu'un premier mot est placé sur le plateau de jeu, chaque nouveau mot doit avoir un point de contact avec les lettres déjà présentes sur le plateau.
+
+Les joueurs peuvent aussi se baser sur les lettres déjà posées pour construire leurs nouveau mots.
+Par exemple, si `jour` est déjà présent en jeu, il est possible de former `bonjour` en ayant uniquement `b o n` dans son chevalet.
+
+### Deuxième manche
+
+Une fois que chaque joueur a posé un mot (ou échangé des lettres de leur chevalet), une nouvelle manche recommence avec le joueur 1.
+
+### etc
+
+Le jeu continue jusqu'à ce que le sac soit vide.
+
+### Fin de la partie
+
+Dès que ça arrive, le joueur qui a le plus de points gagne la partie.
+
+## Calcul des points
+
+### Points par lettre
+
+Chaque lettre posée vaut un certain nombre de points :
+
+E. 1
+A. 1
+I. 1
+N. 1
+O. 1
+R. 1
+S. 1
+T. 1
+U. 1
+L. 1
+D. 2
+G. 2
+M. 2
+B. 3
+C. 3
+P. 3
+F. 4
+H. 4
+V. 4
+J. 8
+Q. 8
+K. 10
+W. 10
+X. 10
+Y. 10
+Z. 10
+
+### Cases multiplicatrices
+
+#### Mot compte double ( `#2` )
+
+Lorsqu'un joueur pose une lettre sur une case "mot compte double" ( `#2` sur le plateau de jeu), le total des points engendré par la pose du mot est doublé.
+
+#### Mot compte triple ( `#3` )
+
+Lorsqu'un joueur pose une lettre sur une case "mot compte triple" ( `#3` sur le plateau de jeu), le total des points engendré par la pose du mot est triplé.
+
+#### Lettre compte double ( `%2` )
+
+Lorsqu'un joueur pose une lettre sur une case "lettre compte double" ( `%2` sur le plateau de jeu), les points pour cette lettre sont doublés.
+
+#### Lettre compte triple ( `%3` )
+
+Lorsqu'un joueur pose une lettre sur une case "lettre compte triple" ( `%3` sur le plateau de jeu), les points pour cette lettre sont triplés.
+
+### Scrabble
+
+Si un joueur pose toutes les lettres de son chevalet (7) d'un seul coup, il obtient un bonus de 50 points.
+
+### Mots engendrés
+
+Lors de la pose d'un mot sur le plateau, il est possible (et même probable) que certaines lettres du mot complètent ou forment un autre mot sur le plateau. Auquel cas, les points pour ce mot sont ajoutés au joueur.
+
+En reprenant l'exemple ci-dessus, si `jour` est déjà présent en jeu, il est possible de poser `bon` et d'obtenir les points pour `bonjour`.
