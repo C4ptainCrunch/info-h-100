@@ -12,87 +12,54 @@ Chaque lettre valant un certain nombre de points, il peut être intéressant de 
 
 Commencez par spécifier au programme le **nombre de joueurs** qui participent. (Maximum 4)
 
-### Première manche
-
-#### Joueur 1
+### Premier tour
 
 Le plateau de jeu est affiché, ainsi que le chevalet du joueur.
-<br>
-<br>
 
-![image](images/debut.png)
 
-Au premier tour, le premier joueur est **obligé** de placer le mot tel qu'une des lettres soit positionnée au centre du plateau. Il peut également choisir de ne rien placer, et de se débarasser de certaines lettres.
+![plateau](images/debut.png)
 
-Une fois qu'il a choisi le(s) lettre(s) dont il veut se débarasser, le chevalet est re-rempli à partir du sac.
+Au premier tour, le premier joueur est **obligé** de placer le mot tel qu'une des lettres soit positionnée au centre du plateau. Il peut également choisir de ne rien placer, et de se débarrasser de certaines lettres. (Il peut aussi choisir de ne se débarrasser d'aucune lettre.)
 
-#### Joueur 2
+Une fois qu'il a choisi le(s) lettre(s) dont il veut se débarrasser , le chevalet est re-rempli à partir du sac et c'est au tour du joueur suivant.
+
+#### Tours suivants
 
 Une fois qu'un premier mot est placé sur le plateau de jeu, chaque nouveau mot doit avoir un point de contact avec les lettres déjà présentes sur le plateau.
 
 Les joueurs peuvent aussi se baser sur les lettres déjà posées pour construire leurs nouveau mots.
-Par exemple, si `jour` est déjà présent en jeu, il est possible de former `bonjour` en ayant uniquement `b o n` dans son chevalet.
+Par exemple, si `jour` est déjà présent en jeu, il est possible de former `bonjour` en ayant uniquement `b` `o` `n` dans son chevalet.
 
-### Deuxième manche
+Les joueurs peuvent aussi choisir de ne rien placer, et de se débarrasser de certaines lettres ou de passer leur tour, de la même manière qu'au premier tour
 
-Une fois que chaque joueur a posé un mot (ou échangé des lettres de leur chevalet), une nouvelle manche recommence avec le joueur 1.
-
-### etc
-
-Le jeu continue jusqu'à ce que le sac soit vide.
 
 ### Fin de la partie
 
-Dès que ça arrive, le joueur qui a le plus de points gagne la partie.
+Le jeu continue jusqu'à ce que le sac soit vide.
+Dès que cela arrive, le joueur qui a le plus de points gagne la partie.
 
 ## Calcul des points
 
 ### Points par lettre
 
 Chaque lettre posée vaut un certain nombre de points :
-
-E. 1
-A. 1
-I. 1
-N. 1
-O. 1
-R. 1
-S. 1
-T. 1
-U. 1
-L. 1
-D. 2
-G. 2
-M. 2
-B. 3
-C. 3
-P. 3
-F. 4
-H. 4
-V. 4
-J. 8
-Q. 8
-K. 10
-W. 10
-X. 10
-Y. 10
-Z. 10
+E, 1; A, 1; I, 1; N, 1; O, 1; R, 1; S, 1; T, 1; U, 1; L, 1; D, 2; G, 2; M, 2; B, 3; C, 3; P, 3; F, 4; H, 4; V, 4; J, 8; Q, 8; K, 10; W, 10; X, 10; Y, 10 et Z. 10 points
 
 ### Cases multiplicatrices
 
-#### Mot compte double ( `#2` )
+#### Mot compte double
 
 Lorsqu'un joueur pose une lettre sur une case "mot compte double" ( `#2` sur le plateau de jeu), le total des points engendré par la pose du mot est doublé.
 
-#### Mot compte triple ( `#3` )
+#### Mot compte triple
 
 Lorsqu'un joueur pose une lettre sur une case "mot compte triple" ( `#3` sur le plateau de jeu), le total des points engendré par la pose du mot est triplé.
 
-#### Lettre compte double ( `%2` )
+#### Lettre compte double
 
 Lorsqu'un joueur pose une lettre sur une case "lettre compte double" ( `%2` sur le plateau de jeu), les points pour cette lettre sont doublés.
 
-#### Lettre compte triple ( `%3` )
+#### Lettre compte triple
 
 Lorsqu'un joueur pose une lettre sur une case "lettre compte triple" ( `%3` sur le plateau de jeu), les points pour cette lettre sont triplés.
 
