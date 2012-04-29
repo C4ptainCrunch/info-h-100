@@ -5,6 +5,17 @@ import unicodedata
 
 
 def asciiConvert(chaine):
+    """Convertit une chaine  encodée en UTF-8 en une autre chaine UTF-8
+        lowercase en transformant toutes les lettres accentuées en leur
+        équivalent en minuscule non accentué
+        (supprimme aussi les caractères non alphanumériques)
+        
+        Arguments :
+        chaine (string) : chaine à convertir
+        
+        Valeur de retour : (string)
+        chaine convertie
+        """
     data = chaine.decode('utf-8')
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if \
                    unicodedata.category(x)[0] == 'L').lower()
@@ -73,7 +84,6 @@ def demanderMot():
     
     return (False if mot is '' else mot.upper())
 
-print demanderMot()
 def demanderCoord(sens):
     coord = -1
     while not (0 <= coord <= 14):
