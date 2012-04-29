@@ -39,7 +39,7 @@ def afficher(plateau):
     print espace,
     for y in range(0,15):
         print str(y)+espace,
-    print ''
+    print '\n\n'
     i = 0
     for x in plateau:
         print str(i)+espace,
