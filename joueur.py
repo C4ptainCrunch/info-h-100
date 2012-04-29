@@ -71,10 +71,20 @@ def retirerChevalet(chevalet, mot, lettresExistantes):
         chevalet.remove(lettre)
 
 def verifierChevalet(chevalet, mot, lettresSup):
+    """Vérifie qu'un mot que le joueur va poser est bien dans le chevalet,
+        (en comptant que certaines lettres sont déjà sur le plateau)
+
+        Arguments:
+        mot (string) : mot que l'utilisateur a entré
+        lettresExistantes (string) : lettres de mot qui sont déjà sur le plateau 
+        
+        Valeur de retour : (bool)
+            True si le mot est dans le chevalet,
+            False sinon
     """
-    vérifie que le mot est bien dans le chevalet (en comptant les lettres déjà sur le plateau)
-    """
-    test=[] # Si lettresSup=False, on veut retourner False et donc rentrer dans la condition de la liste vide (dans la condition ci dessous)
+    test=[] # Si lettresSup=False, on veut retourner False
+    #et donc rentrer dans la condition de la liste vide
+    #(dans la condition ci-dessous)
     if not lettresSup==False:
         test+=lettresSup+chevalet
     for lettre in mot:
@@ -85,8 +95,14 @@ def verifierChevalet(chevalet, mot, lettresSup):
     return True
 
 def gagnant(joueurs):
-    """
-    Depuis la liste des joueurs, retourne l'indice du joueur qui le plus de points
+    """Depuis la liste des joueurs,
+        retourne l'indice du joueur qui le plus de points
+        
+        Arguments:
+        joueurs (list) : La liste des joueurs
+       
+        Valeur de retour : (int)
+        L'indice du joueur ayant le plus de points
     """
     gagnant=0
     for i in range(len(joueurs)):
