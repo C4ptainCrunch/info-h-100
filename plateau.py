@@ -94,7 +94,6 @@ def verifier(plateau, mot, position, direction,
     lettresExistantes=compatible(plateau, mot, position, direction)
     for motCollateral in motsCollateraux:
         if not dico.verifier(motCollateral[0], dictionnaire):
-            print "a"
             return False
     if (len(mot)+position[direction] <= 15 and
             joueur.verifierChevalet(chevalet, mot, lettresExistantes) and
@@ -102,7 +101,6 @@ def verifier(plateau, mot, position, direction,
             estColle(plateau, mot, position, direction) and
             lettresExistantes!=False):
         return lettresExistantes
-    print "b"
     return False
 
 def compatible(plateau, mot, position, direction):
@@ -303,9 +301,15 @@ def echantillon(plateau, mot, position, direction):
 
 def estVide(case):
     """
-    Vérifie qu'une case est vide. (et donc une liste)
+    Vérifie qu'une case est vide. (et donc que l'argument est une liste)
     
     Arguments :
         case (liste ou string) : valeur de la case (liste si vide)
+    
+    Valeur de retour :
+        Si l'argument est une liste :
+            True
+        Si l'argument n'est pas une liste :
+            False
     """
     return type(case) == type((1,1))
