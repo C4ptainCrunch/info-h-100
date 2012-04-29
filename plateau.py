@@ -193,12 +193,12 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     mots=[]
     x=position[0]
     y=position[1]
-    for lettre in mot:
+    for lettre in mot: #On parcourt le plateau aux futurs emplacements du mot
         engendre=motEngendre(plateau, lettre, (x,y), direction)
         if estVide(plateau[x][y]): #Si on génère un nouveau mot
-            engendre.append(True)
-        else:
-            engendre.append(False) #Si engendre se base sur une lettre existante
+            engendre.append(True) #On ajoute True aux éléments du mot engendré
+        else:#Si engendre se base sur une lettre existante
+            engendre.append(False) #On ajoute False aux éléments du mot engendré
         if len(engendre[0])>1:
             mots.append(engendre)
         x+=direction
@@ -224,26 +224,30 @@ def motEngendre(plateau, lettre, position, direction):
     """
     x=position[0]
     y=position[1]
-    temp = plateau[x][y] # On garde en mémoire ce qui se trouve sur la case
-    plateau[x][y] = lettre # On remplit provisoirement la case
+    temp = plateau[x][y] #On garde en mémoire ce qui se trouve sur la case
+    plateau[x][y] = lettre #On remplit provisoirement la case
     lettreActuelle = plateau[x][y]
-    while not estVide(lettreActuelle):
+    while not estVide(lettreActuelle): #On boucle vers la gauche ou le haut
+    # (dépendant que le mot est placé verticalement ou horizontalement, 
+    # respectivement), jusqu'à ce qu'on tombe sur une case vide.
         x-=abs(direction-1)
         y-=direction
         lettreActuelle = plateau[x][y]
-    x+=abs(direction-1)
+    x+=abs(direction-1) #On repars de la dernière case non vide 
     y+=direction
     pos=(x,y)
     dir=abs(direction-1)
     lettreActuelle = plateau[x][y]
     motEngendre = ''
-    while not estVide(lettreActuelle):
+    while not estVide(lettreActuelle): #On boucle vers la droite ou le bas, 
+    # jusqu'à tomber sur une case vide (En ayant pris soin de remplir 
+    # provisoirement la case de départ !), en notant chaque lettre
         motEngendre += lettreActuelle
         x+=abs(direction-1)
         y+=direction
         lettreActuelle = plateau[x][y]
     plateau[position[0]][position[1]] = temp
-    return [motEngendre, pos, dir, True] # True=estCollateral
+    return [motEngendre, pos, dir, True] # True signifie estCollateral
         
     
 
