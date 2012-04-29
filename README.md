@@ -1,27 +1,35 @@
 # Projet info-H-100 : Scrabble en python
 
-Bla Bla bla
+## About
 
-## Sous-titre
+Auteurs : Marceau Lecomte et Nikita Marchant
 
-The latest version of the Solarized theme for Mou can be found at the [GitHub repository for this theme](https://github.com/CodeCatalyst/mou-theme-solarized).
+La dernière version peut être trouvée sur le [Dépot BitBucket](https://bitbucket.org/nikitamarchant/scrabble).
 
-To contribute, file bug reports or issues, please visit the [main Solarized GitHub repository](https://github.com/altercation/solarized).
 
-## Installation
+## Utilisation
 
-1. Copy the `*.txt` files from the `Theme` directory to:
+### Pré-requis
 
-	`~/Library/Application Support/Mou/Themes`
+Python 2.7 et la librairie standard
 
-2. Copy the `*.css` files from the `CSS` directory to:
+### Jouer une partie
 
-	`~/Library/Application Support/Mou/CSS`
+1. Rendre  `scrabble.py` exécutable :
 
-3. Open Mou's `Preferences` and navigate to the `Themes` tab.  Select one of the Solarized themes in the `Use Theme:` dropdown.  If Mou was open when you copied the theme files, you may need to hit the `Reload` button.
+	`chmod +x scrabble.py`
 
-4. Open Mou's `Preferences` and navigate to the `CSS` tab.  Select one of the Solarized themes in the `Use CSS:` dropdown.  If Mou was open when you copied the CSS files, you may need to hit the `Reload` button.
+2. Exécuter  `scrabble.py`:
 
-## Screenshot
+	`./scrabble.py`
 
-![Screenshot](https://github.com/CodeCatalyst/mou-theme-solarized/raw/master/screenshot.png)
+3. Jouer en suivant les règles et le manuel d'utilisation (dans `doc/règles.md`)
+
+## License
+
+    « LICENCE BEERWARE » (Révision 42):
+    <marceau.lecomte@gmail.com> et <nikita.marchant@gmail.com> ont créé ce fichier. Tant que vous conservez cet avertissement,
+    vous pouvez faire ce que vous voulez de ce truc. Si on se rencontre un jour et
+    que vous pensez que ce truc vaut le coup, vous pouvez nous payer une bière en
+    retour.
+(Merci à Poul-Henning Kamp, l'auteur de cette licence)
