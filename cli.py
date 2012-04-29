@@ -100,6 +100,11 @@ def afficherChevalet(chevalet):
     print ''
 
 def demanderJoueur():
+    """Appelle demande() tant que l'utilisateur
+        n'a pas rentré un nombre entre 1 et 4 compris
+        
+        Valeur de retour : (int) compris entre 1 et 4
+    """
     nb = 0
     while not (0 < nb < 5):
         nb = demande('Nombre de joueurs ?')
@@ -108,7 +113,12 @@ def demanderJoueur():
     return nb
 
 def demanderJeter():
-    delete = '%'
+    """Appelle demande() tant que l'utilisateur
+        n'a pas renté une lettre de l'aphabet ou un retour à la ligne
+        
+        Valeur de retour : (str) lettre de l'alphabet, en maj.
+    """
+    delete = '%' #Non alpha et non vide pour rentrer dans la boucle min. 1 fois
     while not (delete == '' or(len(delete) == 1 and delete.isalpha())):
         delete = demande('Quelle lettre voulez vous jeter ? Tapez enter pour finir votre tour.')
         if delete.isalpha():
@@ -116,11 +126,24 @@ def demanderJeter():
     return delete
 
 def demanderMot():
-    mot = asciiConvert(demande('Quel mot voulez-vous former ? Tapez enter pour jeter des lettres.'))
+    """Demande à l'utilisateur un mot à former
+        
+        Valeur de retour :
+            Soit (bool) False si l'utilisateur a entré un retour à la linge
+            Soit (string) Un mot en majuscules,
+            uniquement constitué de lettres ASCII
+    """
+    mot = asciiConvert(demande('Quel mot voulez-vous former ? '
+                               +'Tapez enter pour jeter des lettres.'))
     
     return (False if mot is '' else mot.upper())
 
 def demanderCoord(sens):
+    """Appelle demande() tant que l'utilisateur
+        n'a pas rentré un nombre entre 0 et 14 compris
+        
+        Valeur de retour : (int) compris entre 0 et 14
+    """
     coord = -1
     while not (0 <= coord <= 14):
         coord = demande('Numéro de '+sens+' ?')
@@ -129,6 +152,11 @@ def demanderCoord(sens):
     return coord
 
 def demanderDirection():
+    """Appelle demande() tant que l'utilisateur
+        n'a pas rentré '0' ou '1'
+        
+        Valeur de retour : (int) 0 ou 1
+    """
     sens = -1
     while not (sens == 1 or sens == 0):
         sens = demande('Dans quel sens voulez-vous placer le mot ? (0 = horizontal, 1 = vertical)')

@@ -4,7 +4,7 @@
 
 Auteurs : Marceau Lecomte et Nikita Marchant
 
-La dernière version peut être trouvée sur le [Dépot BitBucket](https://bitbucket.org/nikitamarchant/scrabble).
+La dernière version peut être trouvée sur le [dépot BitBucket](https://bitbucket.org/nikitamarchant/scrabble).
 
 
 ## Utilisation
