@@ -133,14 +133,12 @@ def points(plateau, valeurs, mot, position, direction, motsCollateraux):
         perpendiculaires.
     """
     points=0
-    mots=[[mot, position, direction, False]]
+    mots=[[mot, position, direction, False, True]]
     if len(motsCollateraux)>0:
         mots.extend(motsCollateraux)
-    #print mots # A VIRER
     for i in mots:
-        #print i # A VIRER
-        points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
-        #print points # A VIRER
+        if i[4]==True:
+            points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
     return points
     
 
@@ -195,6 +193,10 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     y=position[1]
     for lettre in mot:
         engendre=motEngendre(plateau, lettre, (x,y), direction)
+        if estVide(plateau[x][y]):
+            engendre.append(True)
+        else:
+            engendre.append(False)
         if len(engendre[0])>1:
             mots.append(engendre)
         x+=direction
