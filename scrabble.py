@@ -72,6 +72,12 @@ def chargerMultiplicateurs(chemin):
     return liste
 
 def main():
+    """
+    Initialise un jeu de scrabble et joue toute la partie.
+    
+    Arguments : /
+    Valeur de retour : /
+    """
     #initialisation des variables
     Dico=chargerDico('assets/french.dic')
     multiplicateurs=chargerMultiplicateurs('assets/multiplicateurs')
