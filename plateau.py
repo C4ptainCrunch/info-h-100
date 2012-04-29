@@ -193,10 +193,10 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     y=position[1]
     for lettre in mot:
         engendre=motEngendre(plateau, lettre, (x,y), direction)
-        if estVide(plateau[x][y]):
+        if estVide(plateau[x][y]): #Si on génère un nouveau mot
             engendre.append(True)
         else:
-            engendre.append(False)
+            engendre.append(False) #Si engendre se base sur une lettre existante
         if len(engendre[0])>1:
             mots.append(engendre)
         x+=direction
