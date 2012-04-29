@@ -224,8 +224,8 @@ def motEngendre(plateau, lettre, position, direction):
     """
     x=position[0]
     y=position[1]
-    temp = plateau[x][y]
-    plateau[x][y] = lettre
+    temp = plateau[x][y] # On garde en mémoire ce qui se trouve sur la case
+    plateau[x][y] = lettre # On remplit provisoirement la case
     lettreActuelle = plateau[x][y]
     while not estVide(lettreActuelle):
         x-=abs(direction-1)
