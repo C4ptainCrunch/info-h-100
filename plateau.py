@@ -263,7 +263,7 @@ def estColle(plateau, mot, position, direction):
     x=position[0]
     y=position[1]
     for lettre in mot:
-        if (plateau[x][y] or
+        if (not estVide(plateau[x][y]) or
             (not estVide(plateau[x+1][y])) or
             (not estVide(plateau[x-1][y])) or
             (not estVide(plateau[x][y+1])) or
