@@ -245,6 +245,7 @@ def motEngendre(plateau, lettre, position, direction):
         x+=abs(direction-1)
         y+=direction
         lettreActuelle = plateau[x][y]
+    #On redonne à la case sa valeur initiale
     plateau[position[0]][position[1]] = temp
     return [motEngendre, pos, dir, True] # True signifie estCollateral
         
