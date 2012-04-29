@@ -104,7 +104,9 @@ def main():
             while not tourFini:
                 mot=cli.demanderMot()   
                 if mot == False: #Si le joueur veut jeter une lettre
-                    delete = '%'
+                    #Valeur non alphabétique et non vide
+                    #pour rentrer dans la boucle min. 1 fois
+                    delete = '%' 
                     #Tant que le joueur veut jeter des lettres
                     while delete != '':
                         delete = cli.demanderJeter()
