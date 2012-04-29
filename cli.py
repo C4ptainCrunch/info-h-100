@@ -15,7 +15,7 @@ def asciiConvert(chaine):
         
         Valeur de retour : (string)
         chaine convertie
-        """
+    """
     data = chaine.decode('utf-8')
     return ''.join(x for x in unicodedata.normalize('NFKD', data) if \
                    unicodedata.category(x)[0] == 'L').lower()
@@ -23,6 +23,18 @@ def asciiConvert(chaine):
 
 
 def afficher(plateau):
+    """Affiche le plateau avec des . à la place des cases vides
+        des #2 pour les cases mot compte double
+        des #3 pour les cases mot compte triple
+        des %2 pour les cases lettre compte triple
+        des %3 pour les cases lettre compte triple
+        Affiche aussi les coordonnées à gauche et en haut du plateau
+        
+        Arguments :
+        plateau (liste) : Le plateau de jeu
+        
+        Valeur de retour : (None)
+    """
     espace = '\t'
     print espace,
     for y in range(0,15):
@@ -49,15 +61,39 @@ def afficher(plateau):
 
 
 def demande(phrase):
+    """Affiche une phrase et un espace après sur STDOUT
+        et attend une entrée sur STDIN
+        +easteregg !
+        
+        Arguments :
+        phrase (string) : La phrase à afficher
+        
+        Valeur de retour : (string) Ce que python  à récupéré su STDIN
+    """
     retour=raw_input(phrase+' ')
     if retour==42:
+        print 'Vous avez trouvé la réponse : Bravo !'
         quit()
     return retour
 
 def info(phrase):
+    """Affiche une phrase sur STDOUT
+        
+        Arguments :
+        phrase (string) : La phrase à affiche
+        
+        Valeur de retour : (None)
+    """
     print phrase
 
 def afficherChevalet(chevalet):
+    """Affiche le chevalet sur STDOUT
+        
+        Arguments :
+        chevalet (liste) : Liste des lettres du chevalet du joueur
+        
+        Valeur de retour : (None)
+    """
     print 'Chevalet :',
     for lettre in chevalet:
         print lettre + ' ',

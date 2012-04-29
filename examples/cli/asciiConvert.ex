@@ -1,0 +1,2 @@
+>>> print asciiConvert('&éöpsè,')
+'eopse'

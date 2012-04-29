@@ -8,13 +8,13 @@ def init(multiplicateurs):
     Initialise un plateau de jeu
     
     Arguments :
-        multiplicateurs (liste) : liste des cases avec multiplicateur.
+        multiplicateurs (list) : liste des cases avec multiplicateur.
             Chaque multiplicateur est repérsenté par une liste (len(liste)==4)
             Les deux premiers éléments de la liste représentatent la position
             (x, y), le troisième représente le multiplicateur du mot et le
             dernier le multiplicateur de la lettre.
     
-    Valeur de retour : (liste)
+    Valeur de retour : (list)
         Retourne une liste de listes (matrice) de tuples.
         Chaque sous-liste représente une ligne du plateau.
         Dans chaque sous-tuple (a,b), le premier élément (a)
@@ -38,13 +38,13 @@ def placer(plateau, mot, position, direction, dictionnaire, chevalet, valeurs):
     direction donnée, et retire du chevalet les lettres placées.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot en majuscules à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
         dictionnaire (tuple) : Chaque élément du tuple est un mot autorisé
-        chevalet (liste) : Liste des lettres du chevalet du joueur
-        valeurs (dictionnaire) : Associe à chaque lettre le nombre de point
+        chevalet (list) : Liste des lettres du chevalet du joueur
+        valeurs (dictionary) : Associe à chaque lettre le nombre de point
             qu'elle vaut au Scrabble
     
     Valeurs de retour :
@@ -74,20 +74,20 @@ def verifier(plateau, mot, position, direction,
     Vérifie que le mot à placer peut effectivement être placé.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
         dictionnaire (tuple) : Chaque élément du tuple est un mot autorisé
-        chevalet (liste) : Liste des lettres du chevalet du joueur
-        motsCollateraux (liste) : Liste des mots perpendiculaires engendrés par
+        chevalet (list) : Liste des lettres du chevalet du joueur
+        motsCollateraux (list) : Liste des mots perpendiculaires engendrés par
             la pose du mot.
     
     Valeurs de retour :
         Si le mot ne peut être placé :
             False
         Si le mot peut être placé :
-            lettresExistantes (liste) : liste des lettres déjà présentes sur le
+            lettresExistantes (list) : liste des lettres déjà présentes sur le
             plateau aux emplacements du nouveau mot.
 
     """
@@ -108,13 +108,13 @@ def compatible(plateau, mot, position, direction):
     Vérifie que le mot puisse être mis par rapport aux autres lettres du jeu.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
     
-    Valeur de retour : (liste)
-        lettresExistantes (liste) : liste des lettres déjà présentes sur le
+    Valeur de retour : (list)
+        lettresExistantes (list) : liste des lettres déjà présentes sur le
         plateau aux emplacements du nouveau mot.
     """
     lettresExistantes=[]
@@ -149,8 +149,8 @@ def pointsMot(plateau, valeurs, mot, position, direction, estCollateral):
     Calcule le nombre de points engendrés par la pose du mot.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
-        valeurs (dictionnaire) : Associe à chaque lettre le nombre de point
+        plateau (list) : Le plateau de jeu
+        valeurs (dictionary) : Associe à chaque lettre le nombre de point
             qu'elle vaut au Scrabble
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
@@ -181,12 +181,12 @@ def trouverMotsCollateraux(plateau, mot, position, direction):
     Trouve les mots perpendiculaires engendrés par la pose du mot.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
     
-    Valeur de retour : (liste)
+    Valeur de retour : (list)
         mots : Liste des mots perpendiculaires engendrés par la pose du mot.
         
     """
@@ -207,12 +207,12 @@ def motEngendre(plateau, lettre, position, direction):
     du mot, pour la lettre donnée.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         lettre (string) : Lettre qu'on place
         position (tuple) : position x et y de la lettre
         direction (int) : 0 si mot à placer horizontalement, 1 si verticalement
     
-    Valeur de retour : (liste)
+    Valeur de retour : (list)
         motEngendre : retourne le mot engendré perpendiculairement par la pose
             du mot, pour la lettre donnée, avec sa position de début et sa
             direction
@@ -249,7 +249,7 @@ def estColle(plateau, mot, position, direction):
     présentes sur le plateau.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
@@ -281,12 +281,12 @@ def echantillon(plateau, mot, position, direction):
     plateau, là où l'utilisateur veut placer son mot.
     
     Arguments :
-        plateau (liste) : Le plateau de jeu
+        plateau (list) : Le plateau de jeu
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
     
-    Valeur de retour : (liste)
+    Valeur de retour : (list)
         echantillon : ensemble de lettre et de cases vides qui se trouve sur le
             plateau, là où l'utilisateur veut placer son mot
     """
@@ -304,7 +304,7 @@ def estVide(case):
     Vérifie qu'une case est vide. (et donc que l'argument est une liste)
     
     Arguments :
-        case (liste ou string) : valeur de la case (liste si vide)
+        case (list ou string) : valeur de la case (liste si vide)
     
     Valeur de retour :
         Si l'argument est une liste :
