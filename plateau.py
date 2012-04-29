@@ -240,8 +240,7 @@ def motEngendre(plateau, lettre, position, direction):
     lettreActuelle = plateau[x][y]
     motEngendre = ''
     while not estVide(lettreActuelle): #On boucle vers la droite ou le bas, 
-    # jusqu'à tomber sur une case vide (En ayant pris soin de remplir 
-    # provisoirement la case de départ !), en notant chaque lettre
+    # jusqu'à tomber sur une case vide, en notant chaque lettre
         motEngendre += lettreActuelle
         x+=abs(direction-1)
         y+=direction
