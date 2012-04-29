@@ -7,7 +7,7 @@ True
 
 ######################################
 
-Case =  U
+Case =  'U'
 
 
 >>> print estVide(case)
