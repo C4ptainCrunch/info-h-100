@@ -18,4 +18,4 @@ direction =  1
 
 >>> print trouverMotsCollateraux(plateau, mot, position, direction)
 
-[['RELIEF', (7, 7), 0, True]]
+[['RELIEF', (7, 7), 0, True, False]]

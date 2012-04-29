@@ -137,7 +137,7 @@ def points(plateau, valeurs, mot, position, direction, motsCollateraux):
     if len(motsCollateraux)>0:
         mots.extend(motsCollateraux)
     for i in mots:
-        if i[4]==True:
+        if i[4]==True: # Si c'est un mot formé
             points+=pointsMot(plateau, valeurs, i[0], i[1], i[2], i[3])
     return points
     
@@ -153,6 +153,8 @@ def pointsMot(plateau, valeurs, mot, position, direction, estCollateral):
         mot (string) : Le mot à placer sur le plateau
         position (tuple) : position x et y de la première lettre du mot à placer
         direction (int) : 0 si horizontalement, 1 si verticalement
+        estCollateral (bool) : True si mot posé par l'utilisateur
+            (pour le "Scrabble")
     
     Valeur de retour : (int)
         points : nombre de points engendrés par la pose du mot.
