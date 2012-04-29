@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 import cli
 import dico
-import humain
 import joueur
-import ordi
 import plateau
 import sac
 
