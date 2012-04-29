@@ -9,13 +9,15 @@ def init(multiplicateurs):
     
     Arguments :
         multiplicateurs (liste) : liste des cases avec multiplicateur.
+            Chaque multiplicateur est repérsenté par une liste (len(liste)==4)
             Les deux premiers éléments de la liste représentatent la position
             (x, y), le troisième représente le multiplicateur du mot et le
             dernier le multiplicateur de la lettre.
     
     Valeur de retour : (liste)
-        Retourne une liste de listes de tuples. Chaque sous-liste représente une
-        ligne du plateau. Dans chaque sous-tuple (a,b), le premier élément (a)
+        Retourne une liste de listes (matrice) de tuples.
+        Chaque sous-liste représente une ligne du plateau.
+        Dans chaque sous-tuple (a,b), le premier élément (a)
         est le multiplicateur du mot et le second (b) le multiplicateur de la
         lettre.
     """
