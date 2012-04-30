@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+
+### POUR LES EXEMPLES DES FONCTIONS, VOIR "doc/examples/nomdelafonction.ex" ###
+
 import dico
 import joueur
 
