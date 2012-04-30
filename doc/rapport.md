@@ -65,6 +65,7 @@
 
 
 ## Repésentation des données
+<br>
 
 ### Dictionnaire
 
@@ -123,10 +124,11 @@ Exemple :
     ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'U', 'U', 'L', 'L', 'L', 'L', 'L', 'D', 'D', 'D', 'G', 'G', 'M', 'M', 'M', 'B', 'B', 'C', 'C', 'P', 'P', 'F', 'F', 'H', 'H', 'V', 'V', 'J', 'Q', 'K', 'W', 'X', 'Y', 'Z']
 
 ## Choix algorithmiques
-
+<br>
 ### Mots collatéraux
-
+<br>
 #### trouverMotsCollateraux(ARGS)
+<br>
 
 	def trouverMotsCollateraux(plateau, mot, position, direction):
     	mots=[]
@@ -149,6 +151,7 @@ On parcourt le plateau aux futurs emplacements du mot qu'on veut placer. Pour ch
 Si cette case était vide, c'est que le mot perpendiculaire engendré a été formé par la pose de la lettre. On peut donc compter les points qui y sont associés. Si la case était déjà occupée, c'est que le mot perpendiculaire n'a pas été formé par la pose du nouveau mot.
 
 On ajoute un élément à la liste du mot engendre (cf plus bas) qui transmet le fait qu'il faille compter les points du mot ou pas. (utilisé dans la fonction points(ARG) )
+<br><br>
 
 #### motEngendre(ARGS)
 
@@ -184,9 +187,8 @@ Cette fonction trouve le mot (perpendiculairement à la pose du mot) engendré p
 
 Le dernier élément de la liste retournée signifie que le mot engendré ne peut représenter un "Scrabble" dans le comptage des points.
 
+## Manuel d'utilisation
 <br>
-# Manuel d'utilisation
-
 Voici le déroulement d'une partie-type du jeu de Scrabble simplifié.
 Les règles du jeu diffèrent quelque peu des règles officielles du Scrabble.
 
@@ -195,11 +197,11 @@ Le but du jeu est de poser des mots les plus longs possible, à partir des lettr
 Chaque lettre valant un certain nombre de points, il peut être intéressant de placer des lettres à plus fortes valeurs.
 (Les détails pratiques du calcul des points sont affichés plus bas)
 
-## Déroulement du jeu
+### Déroulement du jeu
 
 Commencez par spécifier au programme le **nombre de joueurs** qui participent. (Maximum 4)
 
-### Premier tour
+#### Premier tour
 
 Le plateau de jeu est affiché, ainsi que le chevalet du joueur.
 
@@ -225,36 +227,36 @@ Les joueurs peuvent aussi choisir de ne rien placer, et de se débarrasser de ce
 Le jeu continue jusqu'à ce que le sac soit vide.
 Dès que cela arrive, le joueur qui a le plus de points gagne la partie.
 
-## Calcul des points
+### Calcul des points
 
-### Points par lettre
+#### Points par lettre
 
 Chaque lettre posée vaut un certain nombre de points :
 E, 1; A, 1; I, 1; N, 1; O, 1; R, 1; S, 1; T, 1; U, 1; L, 1; D, 2; G, 2; M, 2; B, 3; C, 3; P, 3; F, 4; H, 4; V, 4; J, 8; Q, 8; K, 10; W, 10; X, 10; Y, 10 et Z. 10 points
 
-### Cases multiplicatrices
+#### Cases multiplicatrices
 
-#### Mot compte double
+##### Mot compte double
 
 Lorsqu'un joueur pose une lettre sur une case "mot compte double" ( `#2` sur le plateau de jeu), le total des points engendré par la pose du mot est doublé.
 
-#### Mot compte triple
+##### Mot compte triple
 
 Lorsqu'un joueur pose une lettre sur une case "mot compte triple" ( `#3` sur le plateau de jeu), le total des points engendré par la pose du mot est triplé.
 
-#### Lettre compte double
+##### Lettre compte double
 
 Lorsqu'un joueur pose une lettre sur une case "lettre compte double" ( `%2` sur le plateau de jeu), les points pour cette lettre sont doublés.
 
-#### Lettre compte triple
+##### Lettre compte triple
 
 Lorsqu'un joueur pose une lettre sur une case "lettre compte triple" ( `%3` sur le plateau de jeu), les points pour cette lettre sont triplés.
 
-### Scrabble
+#### Scrabble
 
 Si un joueur pose toutes les lettres de son chevalet (7) d'un seul coup, il obtient un bonus de 50 points.
 
-### Mots engendrés
+#### Mots engendrés
 
 Lors de la pose d'un mot sur le plateau, il est possible (et même probable) que certaines lettres du mot complètent ou forment un autre mot sur le plateau. Auquel cas, les points pour ce mot sont ajoutés au joueur.
 
