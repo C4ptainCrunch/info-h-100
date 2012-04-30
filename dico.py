@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+POUR LES EXEMPLES DES FONCTIONS, VOIR :
+"doc/examples/nomdumodule/nomdelafonction.ex"
+"""
 
 def verifier(mot, dico):
     """
