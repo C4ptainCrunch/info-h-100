@@ -55,7 +55,8 @@ def chargerValeurs(lettres):
     qu'elle vaut
     
     Arguments :
-        lettres (liste) : Liste des lettres, du nombre qu'il y en a et du nombre de points qu'elles vallent pour le jeu de Scrabble.
+        lettres (liste) : Liste des lettres, du nombre qu'il y en a et du nombre
+        de points qu'elles vallent pour le jeu de Scrabble.
     
     Valeur de retour : (dictionnaire)
         valeurs : Associe à chaque lettre le nombre de points qu'elle vaut
@@ -67,7 +68,8 @@ def chargerValeurs(lettres):
 
 def chargerMultiplicateurs(chemin):
     """
-    retourne la liste des lettres multiplicatrices : position(x) - position(y) - multiplicateur de mot - multiplicateur de lettre
+    retourne la liste des lettres multiplicatrices : position(x) - position(y) -
+        multiplicateur de mot - multiplicateur de lettre
     """
     fichier = open(chemin)
     liste = []
@@ -135,7 +137,7 @@ veuillez recommencer.')
                     dir=int(cli.demanderDirection())
                     points=plateau.placer(Plateau, mot, (posx,posy),
                                           dir, Dico, joueurs[i][0], valeurs)
-                    if points!=0: #Si le mot a été placé
+                    if not points == False: #Si le mot a été placé
                         joueur.ajouterPoints(points, joueurs[i])
                         joueur.remplirChevalet(chevalet, Sac)
                         tourFini = True

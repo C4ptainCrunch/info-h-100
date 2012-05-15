@@ -12,7 +12,8 @@ def verifier(mot, dico):
         
         Arguments :
         mot (string) : Mot à vérifier, en majuscules.
-        dico (tuple) : Tuple contenant tous les mots autorisés, en majuscules et sans diacritiques
+        dico (tuple) : Tuple contenant tous les mots autorisés, en majuscules et
+        sans diacritiques
         
         Valeur de retour : (bool)
         Retourne True si le mot est dans le dictionnaire, False sinon

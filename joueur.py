@@ -15,7 +15,8 @@ def init(Sac):
         Sac (list) : Liste de lettres.
         
         Valeur de retour : (list)
-        Liste de 2 éléments : le premier étant un chevalet (list) et le deuxième 0 (int) étant le nombre de points du joueur
+        Liste de 2 éléments : le premier étant un chevalet (list) et le deuxième
+        0 (int) étant le nombre de points du joueur
     """
     joueur=[]
     joueur.append(creerChevalet(Sac))

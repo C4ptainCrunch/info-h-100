@@ -77,8 +77,9 @@ def demande(phrase):
         Valeur de retour : (string) Ce que python  à récupéré su STDIN
     """
     retour=raw_input(phrase+' ')
-    if retour==42:
-        print 'Vous avez trouvé la réponse : Bravo !'
+    if retour=='42':
+        print ('Vous avez trouvé LA réponse : Bravo !'
+               +'Vous gagnez donc 10^42 points et ganez la partie :)')
         quit()
     return retour
 
@@ -126,7 +127,8 @@ def demanderJeter():
     """
     delete = '%' #Non alpha et non vide pour rentrer dans la boucle min. 1 fois
     while not (delete == '' or(len(delete) == 1 and delete.isalpha())):
-        delete = demande('Quelle lettre voulez vous jeter ? Tapez enter pour finir votre tour.')
+        delete = demande('Quelle lettre voulez vous jeter ?'
+                         +'Tapez enter pour finir votre tour.')
         if delete.isalpha():
             delete = delete.upper()
     return delete
@@ -165,7 +167,8 @@ def demanderDirection():
     """
     sens = -1
     while not (sens == 1 or sens == 0):
-        sens = demande('Dans quel sens voulez-vous placer le mot ? (0 = horizontal, 1 = vertical)')
+        sens = demande('Dans quel sens voulez-vous placer le mot ?'
+                       +'(0 = horizontal, 1 = vertical)')
         if sens.isdigit():
             sens = int(sens)
     return sens
