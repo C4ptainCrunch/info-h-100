@@ -1,10 +1,15 @@
-# Projet info-H-100 : Scrabble en python
+# Projet info-h-100 : Scrabble in python
 
-## About
+## Authors
 
-Auteurs : Marceau Lecomte et Nikita Marchant
+* Marceau Lecomte
+* Nikita Marchant
 
-La dernière version peut être trouvée sur le [dépot BitBucket](https://bitbucket.org/nikitamarchant/scrabble).
+## License
+
+    The MIT License (MIT)
+    Copyright (c) 2012
+    nimarcha@ulb.ac.be marlecom@ulb.ac.be
 
 
 ## Utilisation
@@ -17,19 +22,10 @@ Python 2.7 et la librairie standard
 
 1. Rendre  `scrabble.py` exécutable :
 
-	`chmod +x scrabble.py`
+    `chmod +x scrabble.py`
 
 2. Exécuter  `scrabble.py`:
 
-	`./scrabble.py`
+    `./scrabble.py`
 
-3. Jouer en suivant les règles et le manuel d'utilisation (dans `doc/règles.md`)
-
-## License
-
-    « LICENCE BEERWARE » (Révision 42):
-    <marceau.lecomte@gmail.com> et <nikita.marchant@gmail.com> ont créé ce fichier. Tant que vous conservez cet avertissement,
-    vous pouvez faire ce que vous voulez de ce truc. Si on se rencontre un jour et
-    que vous pensez que ce truc vaut le coup, vous pouvez nous payer une bière en
-    retour.
-(Merci à Poul-Henning Kamp, l'auteur de cette licence)
+3. Jouer en suivant les règles et le manuel d'utilisation (dans `doc/règles.md`)
